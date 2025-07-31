@@ -203,129 +203,151 @@ const Home = () => {
 
               {/* Schedule Rows */}
               <div className="divide-y divide-purple-500/30">
-                {/* Registration */}
+                {/* Início */}
                 <div className="grid grid-cols-3">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">8:00 - 9:00</div>
-                    <div className="text-white/70 text-sm">Registration & Breakfast</div>
+                    <div className="text-white font-bold">10:00</div>
+                    <div className="text-white/70 text-sm">Início</div>
                   </div>
                   <div className="col-span-2 p-6 text-center">
-                    <div className="text-white font-bold text-lg">Registration & Breakfast</div>
-                  </div>
-                </div>
-
-                {/* Opening */}
-                <div className="grid grid-cols-3">
-                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">9:00 - 9:30</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
-                  </div>
-                  <div className="col-span-2 p-6 text-center">
-                    <div className="text-white font-bold text-lg">Abertura: Ana Paula Perci</div>
-                  </div>
-                </div>
-
-                {/* Parallel Sessions */}
-                <div className="grid grid-cols-3">
-                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">9:30 - 10:30</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
-                  </div>
-                  <div className="p-4 border-r border-purple-500/30">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
                         alt="Ana Paula Perci" 
                         className="w-10 h-10 rounded-full object-cover"
                       />
                       <div>
-                        <div className="text-white font-bold">Posicionamento</div>
-                        <div className="text-white/70 text-sm">Fundamentos e estratégias essenciais</div>
+                        <div className="text-white font-bold text-lg">Palestra: Ana Paula Perci</div>
+                        <div className="text-white/70 text-sm">Abertura e Posicionamento Digital</div>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-center gap-3">
+                </div>
+
+                {/* Camilo Coutinho */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">11:00</div>
+                    <div className="text-white/70 text-sm">Palestra</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
                         alt="Camilo Coutinho" 
                         className="w-10 h-10 rounded-full object-cover"
                       />
                       <div>
-                        <div className="text-white font-bold">Vídeo Marketing</div>
-                        <div className="text-white/70 text-sm">Produção de conteúdo que converte</div>
+                        <div className="text-white font-bold text-lg">Palestra: Camilo Coutinho</div>
+                        <div className="text-white/70 text-sm">Vídeo Marketing e Produção de Conteúdo</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Single Session */}
+                {/* Almoço */}
                 <div className="grid grid-cols-3">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">10:30 - 11:30</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
+                    <div className="text-white font-bold">12:30 - 14:00</div>
+                    <div className="text-white/70 text-sm">Intervalo</div>
                   </div>
                   <div className="col-span-2 p-6 text-center">
-                    <div className="text-white font-bold text-lg">Workshop: Estratégias de Vendas</div>
+                    <div className="text-white font-bold text-lg">Almoço & Networking</div>
                   </div>
                 </div>
 
-                {/* Networking */}
+                {/* Melina Dantas */}
                 <div className="grid grid-cols-3">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">11:30 - 12:00</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
+                    <div className="text-white font-bold">14:00</div>
+                    <div className="text-white/70 text-sm">Palestra</div>
                   </div>
-                  <div className="p-4 border-r border-purple-500/30 text-center">
-                    <div className="text-white font-bold">Networking: Linha Editorial</div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <div className="text-white font-bold">Workshop: Análise</div>
-                  </div>
-                </div>
-
-                {/* More Parallel Sessions */}
-                <div className="grid grid-cols-3">
-                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">12:00 - 13:00</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
-                  </div>
-                  <div className="p-4 border-r border-purple-500/30">
-                    <div className="flex items-center gap-3">
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
                         alt="Melina Dantas" 
                         className="w-10 h-10 rounded-full object-cover"
                       />
                       <div>
-                        <div className="text-white font-bold">Posicionamento</div>
-                        <div className="text-white/70 text-sm">Casos práticos e aplicações</div>
+                        <div className="text-white font-bold text-lg">Palestra: Melina Dantas</div>
+                        <div className="text-white/70 text-sm">Estratégias de Marca</div>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-center gap-3">
+                </div>
+
+                {/* Sabrina */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">15:00</div>
+                    <div className="text-white/70 text-sm">Palestra</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1581090464777-f3220bbe18b8" 
                         alt="Sabrina" 
                         className="w-10 h-10 rounded-full object-cover"
                       />
                       <div>
-                        <div className="text-white font-bold">Estratégias</div>
-                        <div className="text-white/70 text-sm">Implementação e resultados</div>
+                        <div className="text-white font-bold text-lg">Palestra: Sabrina</div>
+                        <div className="text-white/70 text-sm">Desenvolvimento de Conteúdo</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Break */}
+                {/* Victor */}
                 <div className="grid grid-cols-3">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
-                    <div className="text-white font-bold">13:00 - 14:00</div>
-                    <div className="text-white/70 text-sm">Time/Track</div>
+                    <div className="text-white font-bold">16:00</div>
+                    <div className="text-white/70 text-sm">Palestra</div>
                   </div>
                   <div className="col-span-2 p-6 text-center">
-                    <div className="text-white font-bold text-lg">Intervalo & Networking</div>
+                    <div className="flex items-center justify-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                        alt="Victor" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold text-lg">Palestra: Victor</div>
+                        <div className="text-white/70 text-sm">Estratégias Digitais</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pausa Lanche */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">17:00</div>
+                    <div className="text-white/70 text-sm">Pausa</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Pausa para Lanche</div>
+                  </div>
+                </div>
+
+                {/* Ana Paula Perci - Encerramento */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">17:30</div>
+                    <div className="text-white/70 text-sm">Encerramento</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="flex items-center justify-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                        alt="Ana Paula Perci" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold text-lg">Encerramento: Ana Paula Perci</div>
+                        <div className="text-white/70 text-sm">Conclusões e Próximos Passos</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
