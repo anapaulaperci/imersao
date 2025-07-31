@@ -144,7 +144,7 @@ const Resumos = () => {
 
       {/* Content Area - Medium Style Feed */}
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="divide-y-2 divide-border space-y-0">
+        <div className="divide-y divide-border space-y-0">
           {resumos.map((resumo, index) => (
             <article key={resumo.id} className="group cursor-pointer pt-12 first:pt-0">
               <div className="flex flex-col md:flex-row md:items-start gap-8">
@@ -197,11 +197,6 @@ const Resumos = () => {
                     </div>
                   </div>
 
-                  {/* User Rating */}
-                  <div className="mt-6 pt-6 border-t border-border/40">
-                    <p className="text-sm text-muted-foreground mb-3">Avalie este conteúdo:</p>
-                    {renderStars(resumo.id, resumo.rating)}
-                  </div>
                 </div>
 
                 {/* Image */}
