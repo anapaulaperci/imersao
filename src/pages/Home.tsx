@@ -66,11 +66,11 @@ const Home = () => {
           {/* End Brands */}
 
           <h1 className="font-semibold text-foreground text-5xl md:text-6xl">
-            <span className="text-primary">Reconhecimento global</span> — e crescendo a cada dia
+            <span className="text-primary">Imersão de Posicionamento,</span> produção de conteúdo e vendas.
           </h1>
           <div className="max-w-4xl">
             <p className="mt-5 text-muted-foreground text-lg">
-              Marcas globais veem sucesso mensurável quando colaboram conosco. De maiores taxas de conversão e aprovação de pagamento a velocidades de processamento mais rápidas. Descubra suas histórias aqui.
+              Por: Ana Paula Perci e Convidados.
             </p>
           </div>
         </div>
