@@ -310,9 +310,9 @@ const Resumos = () => {
 
       {/* Content Area - Medium Style Feed */}
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="divide-y-2 divide-border space-y-12">
+        <div className="space-y-12">
           {resumos.map((resumo, index) => (
-            <article key={resumo.id} className="group cursor-pointer pt-12 first:pt-0">
+            <article key={resumo.id} className="group cursor-pointer">
               <div className="flex flex-col md:flex-row md:items-start gap-8">
                 {/* Content */}
                 <div className="flex-1 order-2 md:order-1">
@@ -345,13 +345,20 @@ const Resumos = () => {
 
                   {/* Description */}
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6 line-clamp-3">
-                    {resumo.description}
+                    {resumo.description}. Este material foi desenvolvido especificamente para profissionais que desejam aprofundar seus conhecimentos e aplicar estratégias práticas em seus projetos.
                   </p>
 
                   {/* Meta Information */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                      <span className="text-muted-foreground">Por {resumo.author}</span>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        <span>{resumo.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <FileText className="h-4 w-4" />
+                        <span>{resumo.lessons} lições</span>
+                      </div>
                     </div>
 
                     {/* Action Buttons */}
