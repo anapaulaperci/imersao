@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { BookOpen, Calendar, FileText, CheckSquare, User, ArrowRight, Star, Target, Zap } from "lucide-react";
+import { BookOpen, Calendar, FileText, CheckSquare, User, ArrowRight, Star, Target, Zap, Instagram } from "lucide-react";
 
 const Home = () => {
   const features = [
@@ -39,6 +39,40 @@ const Home = () => {
     { icon: Star, value: "100+", label: "Conteúdos" },
     { icon: Target, value: "95%", label: "Taxa de Sucesso" },
     { icon: Zap, value: "24/7", label: "Acesso" }
+  ];
+
+  const speakers = [
+    {
+      name: "Ana Paula Perci",
+      description: "Especialista em Posicionamento de Marca",
+      instagram: "https://www.instagram.com/anapaulaperci/",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      name: "Camilo Coutinho",
+      description: "Estrategista digital e autoridade em Video Marketing",
+      bio: "Sou estrategista especializado em vídeo marketing e criação de conteúdo de vendas, com a missão de transformar qualquer mensagem em vídeos que realmente convertem, em qualquer plataforma. Autor do livro Vídeos que Vendem Mais (2020), ajudo empresas e criadores a dominarem o poder das suas marcas e empresas em conteúdos que impulsionam resultados.",
+      instagram: "#",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+    },
+    {
+      name: "Melina Dantas",
+      description: "Palestrante Convidada",
+      instagram: "#",
+      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
+    },
+    {
+      name: "Sabrina",
+      description: "Palestrante Convidada",
+      instagram: "#",
+      image: "https://images.unsplash.com/photo-1581090464777-f3220bbe18b8"
+    },
+    {
+      name: "Victor",
+      description: "Palestrante Convidado",
+      instagram: "#",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+    }
   ];
 
   return (
@@ -141,6 +175,60 @@ const Home = () => {
                   </CardContent>
                 </Card>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Speakers Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Nossos Palestrantes
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Conheça os especialistas que compartilharão seus conhecimentos na imersão
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {speakers.map((speaker, index) => (
+              <a 
+                key={index}
+                href={speaker.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group cursor-pointer"
+              >
+                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-2 border-border hover:border-primary/20 overflow-hidden">
+                  <div className="relative">
+                    <img 
+                      src={speaker.image}
+                      alt={speaker.name}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="p-2 bg-white/90 rounded-full">
+                        <Instagram className="h-4 w-4 text-pink-600" />
+                      </div>
+                    </div>
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      {speaker.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {speaker.description}
+                    </p>
+                    {speaker.bio && (
+                      <p className="text-xs text-muted-foreground line-clamp-3">
+                        {speaker.bio}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              </a>
             ))}
           </div>
         </div>
