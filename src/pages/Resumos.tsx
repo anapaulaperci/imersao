@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BookOpen, User, Play, Star, ArrowRight, Download } from "lucide-react";
+import MusicPlayer from "@/components/MusicPlayer";
 
 const Resumos = () => {
   const navigate = useNavigate();
@@ -130,6 +131,9 @@ const Resumos = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Music Player - Fixed Position */}
+      <MusicPlayer />
+      
       {/* Header Section - Medium Style */}
       <div className="border-b border-border/40">
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
