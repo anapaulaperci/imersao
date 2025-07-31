@@ -1,9 +1,46 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FileText, BookOpen, Clock, User, Play, Star, ArrowRight, Download } from "lucide-react";
 
 const Resumos = () => {
+  const [userRatings, setUserRatings] = useState<{[key: number]: number}>({});
+
+  const handleRating = (resumoId: number, rating: number) => {
+    setUserRatings(prev => ({
+      ...prev,
+      [resumoId]: rating
+    }));
+  };
+
+  const renderStars = (resumoId: number, currentRating: number) => {
+    const userRating = userRatings[resumoId] || 0;
+    
+    return (
+      <div className="flex items-center gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            onClick={() => handleRating(resumoId, star)}
+            className="group/star"
+          >
+            <Star 
+              className={`h-4 w-4 transition-colors cursor-pointer ${
+                star <= userRating 
+                  ? 'fill-yellow-400 text-yellow-400' 
+                  : 'text-gray-300 hover:text-yellow-300'
+              }`}
+            />
+          </button>
+        ))}
+        <span className="ml-2 text-sm text-muted-foreground">
+          {userRating > 0 ? `${userRating}/5` : `${currentRating}/5.0`}
+        </span>
+      </div>
+    );
+  };
+
   const resumos = [
     {
       id: 1,
@@ -125,28 +162,6 @@ const Resumos = () => {
         </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="px-6 pb-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[
-              { label: 'Módulos', value: resumos.length, icon: FileText },
-              { label: 'Lições', value: totalLessons, icon: BookOpen },
-              { label: 'Horas', value: `${totalDuration}h`, icon: Clock },
-              { label: 'Avaliação', value: averageRating, icon: Star }
-            ].map((stat, index) => (
-              <div key={index} className="rounded-2xl bg-card/50 p-6 text-center backdrop-blur-sm border border-border/50">
-                <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <stat.icon className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Content List */}
       <div className="px-6 pb-16">
         <div className="mx-auto max-w-4xl">
@@ -181,10 +196,10 @@ const Resumos = () => {
                       </p>
                     </div>
 
-                    {/* Hero Image */}
-                    <div className="relative w-full h-64 md:h-80 bg-muted rounded-2xl overflow-hidden">
+                    {/* Preview Image - Smaller */}
+                    <div className="relative w-48 h-32 bg-muted rounded-xl overflow-hidden mb-4">
                       <img 
-                        className="size-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" 
+                        className="size-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105" 
                         src={resumo.image} 
                         alt={resumo.title}
                       />
@@ -192,8 +207,8 @@ const Resumos = () => {
                       
                       {/* Play Button Overlay */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                          <Play className="h-10 w-10 text-white fill-current" />
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+                          <Play className="h-6 w-6 text-white fill-current" />
                         </div>
                       </div>
                     </div>
@@ -230,10 +245,12 @@ const Resumos = () => {
                             <FileText className="h-4 w-4" />
                             <span>{resumo.lessons} lições</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                            <span>{resumo.rating}/5.0</span>
-                          </div>
+                        </div>
+
+                        {/* User Rating */}
+                        <div className="pt-4 border-t border-border/50">
+                          <p className="text-sm text-muted-foreground mb-2">Avalie esta palestra:</p>
+                          {renderStars(resumo.id, resumo.rating)}
                         </div>
 
                         {/* Action Buttons */}
