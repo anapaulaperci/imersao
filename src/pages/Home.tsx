@@ -64,16 +64,16 @@ const Home = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Link to="/cronograma">
+              <Link to="/auth">
                 <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
-                  Começar Agora
+                  Fazer Login
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               
-              <Link to="/resumos">
+              <Link to="/cronograma">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 py-4 bg-white/10 border-white/20 text-white hover:bg-white/20 shadow-lg">
-                  Ver Conteúdos
+                  Ver Cronograma
                 </Button>
               </Link>
             </div>

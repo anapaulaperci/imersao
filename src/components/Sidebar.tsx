@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 import { 
   Home, 
   Calendar, 
@@ -8,15 +10,15 @@ import {
   User, 
   BookOpen,
   ChevronDown,
-  Bell,
-  ArrowUp,
   Menu,
-  X
+  X,
+  LogOut
 } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { signOut } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -62,10 +64,14 @@ const Sidebar = () => {
       hasDropdown: true,
       items: [
         { title: "Meu Perfil", path: "/perfil" },
-        { title: "Configurações", path: "/configuracoes" }
+        { title: "Administração", path: "/admin" }
       ]
     }
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <>
@@ -191,6 +197,14 @@ const Sidebar = () => {
                       anapaulaperci.com
                     </span>
                   </span>
+                  <Button
+                    onClick={handleSignOut}
+                    variant="ghost"
+                    size="sm"
+                    className="ml-auto text-white/60 hover:text-white hover:bg-white/10"
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </Button>
                 </button>
               </div>
             </div>
