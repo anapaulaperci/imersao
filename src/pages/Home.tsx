@@ -334,29 +334,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-50 to-purple-100">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-12 shadow-xl border border-purple-100">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Pronto para começar sua 
-              <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent"> jornada?</span>
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Junte-se a centenas de profissionais que já transformaram suas carreiras
-            </p>
-            <Link to="/resumos">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                Iniciar Imersão
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
