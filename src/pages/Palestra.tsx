@@ -205,53 +205,40 @@ const Palestra = () => {
         </div>
 
         {/* Sidebar - Other Lectures */}
-        <div className="hidden xl:block w-80 border-l border-border bg-muted/20">
-          <div className="sticky top-0 p-6 h-screen overflow-y-auto">
-            <h3 className="font-semibold text-lg text-foreground mb-6">
-              Outras Palestras
+        <div className="hidden xl:block w-80 border-l border-border/30 bg-background">
+          <div className="sticky top-0 p-8 h-screen overflow-y-auto">
+            <h3 className="font-normal text-lg text-foreground mb-8">
+              Mais para ler
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-8">
               {otherResumes.map((lecture) => (
                 <Link
                   key={lecture.id}
                   to={`/palestra/${lecture.id}`}
                   className="block group"
                 >
-                  <article className="p-4 rounded-lg border border-border hover:border-primary/20 hover:bg-background/80 transition-all duration-200">
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0">
-                        <img 
-                          src={lecture.image} 
-                          alt={lecture.title}
-                          className="w-16 h-16 object-cover rounded-lg"
-                        />
+                  <article className="group-hover:opacity-75 transition-opacity duration-200">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Badge variant="secondary" className={`${getCategoryColor(lecture.category)} text-xs border-none`}>
+                          {lecture.category}
+                        </Badge>
+                        {lecture.isNew && (
+                          <span className="text-xs text-emerald-600 font-medium">Novo</span>
+                        )}
                       </div>
                       
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="secondary" className={`${getCategoryColor(lecture.category)} text-xs`}>
-                            {lecture.category}
-                          </Badge>
-                          {lecture.isNew && (
-                            <Badge className="bg-emerald-500/10 text-emerald-600 border-emerald-200 text-xs">
-                              Novo
-                            </Badge>
-                          )}
-                        </div>
-                        
-                        <h4 className="font-medium text-foreground text-sm line-clamp-2 group-hover:text-primary transition-colors">
-                          {lecture.title}
-                        </h4>
-                        
-                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                          {lecture.description}
-                        </p>
-                        
-                        <div className="flex items-center justify-between mt-3">
-                          <span className="text-xs text-muted-foreground">{lecture.author}</span>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
+                      <h4 className="font-medium text-foreground text-base leading-snug line-clamp-2 group-hover:underline">
+                        {lecture.title}
+                      </h4>
+                      
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {lecture.description}
+                      </p>
+                      
+                      <div className="pt-2">
+                        <span className="text-xs text-muted-foreground">{lecture.author}</span>
                       </div>
                     </div>
                   </article>
