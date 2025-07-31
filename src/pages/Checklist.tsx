@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckSquare, Circle, Trophy, Target, Clock, TrendingUp, Plus, Calendar } from "lucide-react";
 import { useState } from "react";
 
@@ -24,6 +25,16 @@ const Checklist = () => {
     "4-2": false,
     "4-3": false,
   });
+
+  const [taskThemes, setTaskThemes] = useState<Record<string, string>>({});
+
+  const themeOptions = [
+    "Posicionamento",
+    "Linha Editorial", 
+    "Vendas",
+    "Produção de Conteúdo",
+    "Análise"
+  ];
 
   const sections = [
     {
@@ -84,6 +95,13 @@ const Checklist = () => {
     }));
   };
 
+  const handleThemeChange = (itemId: string, theme: string) => {
+    setTaskThemes(prev => ({
+      ...prev,
+      [itemId]: theme
+    }));
+  };
+
   const getSectionProgress = (sectionId: string) => {
     const sectionItems = sections.find(s => s.id === sectionId)?.items || [];
     const completedItems = sectionItems.filter(item => checkedItems[item.id]).length;
@@ -131,23 +149,13 @@ const Checklist = () => {
             </Button>
           </div>
           
-          {/* Theme and Date Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="space-y-2">
-              <Label htmlFor="task-theme" className="text-sm font-medium">
-                Tema da Tarefa
-              </Label>
-              <Input 
-                id="task-theme"
-                placeholder="Digite o tema principal da tarefa..."
-                className="w-full"
-              />
-            </div>
+          {/* Date Section */}
+          <div className="mb-6">
             <div className="space-y-2">
               <Label htmlFor="completion-date" className="text-sm font-medium">
                 Data de Conclusão
               </Label>
-              <div className="relative">
+              <div className="relative max-w-xs">
                 <Input 
                   id="completion-date"
                   type="date"
@@ -207,36 +215,63 @@ const Checklist = () => {
                 </CardHeader>
                 
                 {/* Section Items */}
-                <CardContent className="pt-0 space-y-3">
+                <CardContent className="pt-0 space-y-4">
                   {section.items.map((item) => (
                     <div 
                       key={item.id} 
-                      className="flex items-start space-x-3 group hover:bg-muted/30 p-3 rounded-lg transition-colors"
+                      className="border border-border/30 rounded-lg p-4 hover:bg-muted/30 transition-colors"
                     >
-                      <Checkbox
-                        id={item.id}
-                        checked={checkedItems[item.id] || false}
-                        onCheckedChange={() => handleItemCheck(item.id)}
-                        className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <label 
-                          htmlFor={item.id}
-                          className={`block text-sm font-medium cursor-pointer transition-colors ${
-                            checkedItems[item.id] 
-                              ? 'text-muted-foreground line-through' 
-                              : 'text-foreground group-hover:text-primary'
-                          }`}
+                      <div className="flex items-start space-x-3 mb-3">
+                        <Checkbox
+                          id={item.id}
+                          checked={checkedItems[item.id] || false}
+                          onCheckedChange={() => handleItemCheck(item.id)}
+                          className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <label 
+                            htmlFor={item.id}
+                            className={`block text-sm font-medium cursor-pointer transition-colors ${
+                              checkedItems[item.id] 
+                                ? 'text-muted-foreground line-through' 
+                                : 'text-foreground hover:text-primary'
+                            }`}
+                          >
+                            {item.task}
+                          </label>
+                        </div>
+                        <Badge 
+                          variant="secondary" 
+                          className={`text-xs ${getPriorityColor(item.priority)} shrink-0`}
                         >
-                          {item.task}
-                        </label>
+                          {item.priority}
+                        </Badge>
                       </div>
-                      <Badge 
-                        variant="secondary" 
-                        className={`text-xs ${getPriorityColor(item.priority)} shrink-0`}
-                      >
-                        {item.priority}
-                      </Badge>
+                      
+                      {/* Theme Selector */}
+                      <div className="ml-6 max-w-xs">
+                        <Label htmlFor={`theme-${item.id}`} className="text-xs text-muted-foreground mb-1 block">
+                          Tema da Tarefa
+                        </Label>
+                        <Select 
+                          value={taskThemes[item.id] || ""} 
+                          onValueChange={(value) => handleThemeChange(item.id, value)}
+                        >
+                          <SelectTrigger 
+                            id={`theme-${item.id}`}
+                            className="h-8 text-xs bg-background border-border/50"
+                          >
+                            <SelectValue placeholder="Selecione um tema" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background border border-border shadow-lg z-50">
+                            {themeOptions.map((theme) => (
+                              <SelectItem key={theme} value={theme} className="text-xs">
+                                {theme}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   ))}
                 </CardContent>
