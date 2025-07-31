@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Cronograma from "./pages/Cronograma";
 import Resumos from "./pages/Resumos";
+import Palestra from "./pages/Palestra";
 import Checklist from "./pages/Checklist";
 import Perfil from "./pages/Perfil";
 import IA from "./pages/IA";
@@ -32,6 +33,7 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path="cronograma" element={<Cronograma />} />
               <Route path="resumos" element={<Resumos />} />
+              <Route path="palestra/:id" element={<Palestra />} />
               <Route path="checklist" element={<Checklist />} />
               <Route path="perfil" element={<Perfil />} />
               <Route path="ia" element={<IA />} />
