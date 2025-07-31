@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   Home, 
   Calendar, 
@@ -12,13 +13,33 @@ import {
   ChevronDown,
   Menu,
   X,
-  LogOut
+  LogOut,
+  Shield
 } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userRole, setUserRole] = useState<string>('user');
   const location = useLocation();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (!user) return;
+      
+      const { data } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('user_id', user.id)
+        .single();
+        
+      if (data) {
+        setUserRole(data.role);
+      }
+    };
+    
+    fetchUserRole();
+  }, [user]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -64,7 +85,7 @@ const Sidebar = () => {
       hasDropdown: true,
       items: [
         { title: "Meu Perfil", path: "/perfil" },
-        { title: "Administração", path: "/admin" }
+        ...(userRole === 'admin' ? [{ title: "Administração", path: "/admin" }] : [])
       ]
     }
   ];
@@ -107,6 +128,7 @@ const Sidebar = () => {
       >
         <div className="flex flex-col h-full max-h-full py-3">
           <header className="h-11.5 px-8">
+            {/* Logo */}
             <Link 
               className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" 
               to="/"
@@ -151,6 +173,7 @@ const Sidebar = () => {
                                   to={subItem.path}
                                   onClick={() => setIsOpen(false)}
                                 >
+                                  {subItem.title === "Administração" && <Shield className="h-4 w-4 mr-2" />}
                                   {subItem.title}
                                 </Link>
                               </li>
@@ -178,7 +201,6 @@ const Sidebar = () => {
                     </li>
                   );
                 })}
-
               </ul>
             </nav>
           </div>
@@ -187,7 +209,7 @@ const Sidebar = () => {
           <footer className="hidden lg:block sticky bottom-0 inset-x-0 border-t border-white/10">
             <div className="px-7">
               <div className="flex">
-                <button className="group w-full inline-flex items-center py-3 text-start text-white align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
+                <div className="group w-full inline-flex items-center py-3 text-start text-white align-middle">
                   <img src="/lovable-uploads/7433a794-51a8-45eb-81be-aeaccb87a06f.png" alt="Ana Paula Perci" className="size-8 shrink-0" />
                   <span className="block ms-3">
                     <span className="block text-sm font-medium text-white group-hover:text-white/70 group-focus-hover:text-white/70">
@@ -205,7 +227,7 @@ const Sidebar = () => {
                   >
                     <LogOut className="h-4 w-4" />
                   </Button>
-                </button>
+                </div>
               </div>
             </div>
           </footer>

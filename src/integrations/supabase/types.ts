@@ -1614,6 +1614,10 @@ export type Database = {
         Args: { permission_name: string }
         Returns: boolean
       }
+      promote_to_admin: {
+        Args: { user_email?: string }
+        Returns: string
+      }
       promote_user_to_admin: {
         Args: { user_email: string }
         Returns: string
