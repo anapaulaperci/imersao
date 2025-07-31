@@ -95,13 +95,12 @@ const Sidebar = () => {
       >
         <div className="flex flex-col h-full max-h-full py-3">
           <header className="h-11.5 px-8">
-            {/* Logo */}
             <Link 
               className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" 
               to="/"
             >
               <div className="flex items-center space-x-3">
-                <img src="/src/assets/logo.png" alt="Ana Paula Perci" className="h-8 w-8" />
+                <img src="/lovable-uploads/7433a794-51a8-45eb-81be-aeaccb87a06f.png" alt="Ana Paula Perci" className="h-8 w-8" />
                 <span className="text-white font-bold text-lg">Ana Paula Perci</span>
               </div>
             </Link>
@@ -199,7 +198,7 @@ const Sidebar = () => {
             <div className="px-7">
               <div className="flex">
                 <button className="group w-full inline-flex items-center py-3 text-start text-white align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                  <img src="/src/assets/logo.png" alt="Ana Paula Perci" className="size-8 shrink-0" />
+                  <img src="/lovable-uploads/7433a794-51a8-45eb-81be-aeaccb87a06f.png" alt="Ana Paula Perci" className="size-8 shrink-0" />
                   <span className="block ms-3">
                     <span className="block text-sm font-medium text-white group-hover:text-white/70 group-focus-hover:text-white/70">
                       Ana Paula Perci
