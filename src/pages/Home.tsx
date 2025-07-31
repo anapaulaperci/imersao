@@ -189,38 +189,35 @@ const Home = () => {
           <div className="max-w-5xl mx-auto">
             <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ backgroundColor: '#3B0765' }}>
               {/* Header */}
-              <div className="grid grid-cols-3 border-b border-purple-500/30">
+              <div className="grid grid-cols-2 border-b border-purple-500/30">
                 <div className="p-4 text-center text-white/70 font-medium border-r border-purple-500/30">
-                  Time/Track
+                  Horário
                 </div>
-                <div className="p-4 text-center text-orange-400 font-bold text-lg border-r border-purple-500/30">
-                  Posicionamento
-                </div>
-                <div className="p-4 text-center text-white/70 font-medium">
-                  Produção & Vendas
+                <div className="p-4 text-center text-orange-400 font-bold text-lg">
+                  Posicionamento, Produção & Vendas
                 </div>
               </div>
 
               {/* Schedule Rows */}
               <div className="divide-y divide-purple-500/30">
                 {/* Registros no Sistema */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">09:00 - 10:00</div>
                     <div className="text-white/70 text-sm">Registros</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="text-white font-bold text-lg">Registros no Sistema & Credenciamento</div>
                   </div>
                 </div>
 
                 {/* Início */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">10:00</div>
                     <div className="text-white/70 text-sm">Abertura</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
@@ -236,12 +233,12 @@ const Home = () => {
                 </div>
 
                 {/* Camilo Coutinho */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">11:00</div>
                     <div className="text-white/70 text-sm">Palestra</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
@@ -257,23 +254,23 @@ const Home = () => {
                 </div>
 
                 {/* Almoço */}
-                <div className="grid grid-cols-3">
-                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                <div className="grid grid-cols-2" style={{ backgroundColor: '#6F9AF7' }}>
+                  <div className="p-4 border-r border-blue-300/30">
                     <div className="text-white font-bold">12:30 - 14:00</div>
                     <div className="text-white/70 text-sm">Intervalo</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="text-white font-bold text-lg">Almoço & Relacionamento</div>
                   </div>
                 </div>
 
                 {/* Melina Dantas */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">14:00</div>
                     <div className="text-white/70 text-sm">Palestra</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
@@ -289,12 +286,12 @@ const Home = () => {
                 </div>
 
                 {/* Sabrina */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">15:00</div>
                     <div className="text-white/70 text-sm">Palestra</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1581090464777-f3220bbe18b8" 
@@ -310,12 +307,12 @@ const Home = () => {
                 </div>
 
                 {/* Victor */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">16:00</div>
                     <div className="text-white/70 text-sm">Palestra</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
@@ -331,23 +328,23 @@ const Home = () => {
                 </div>
 
                 {/* Pausa Lanche */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">17:00</div>
                     <div className="text-white/70 text-sm">Pausa</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="text-white font-bold text-lg">Pausa para Lanche</div>
                   </div>
                 </div>
 
                 {/* Ana Paula Perci - Encerramento */}
-                <div className="grid grid-cols-3">
+                <div className="grid grid-cols-2">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">17:30</div>
                     <div className="text-white/70 text-sm">Encerramento</div>
                   </div>
-                  <div className="col-span-2 p-6 text-center">
+                  <div className="p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
                       <img 
                         src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
