@@ -114,16 +114,33 @@ const Checklist = () => {
     return Math.round((completedItems / totalItems) * 100);
   };
 
+  const getThemeColor = (theme: string) => {
+    switch (theme) {
+      case "Posicionamento":
+        return "bg-blue-500";
+      case "Linha Editorial":
+        return "bg-green-500";
+      case "Vendas":
+        return "bg-orange-500";
+      case "Produção de Conteúdo":
+        return "bg-purple-500";
+      case "Análise":
+        return "bg-red-500";
+      default:
+        return "bg-gray-400";
+    }
+  };
+
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case "alta":
-        return "bg-destructive/10 text-destructive border-destructive/20";
+        return "bg-red-100 text-red-800 border-red-200";
       case "média":
-        return "bg-accent/10 text-accent border-accent/20";
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "baixa":
-        return "bg-muted text-muted-foreground border-border";
+        return "bg-green-100 text-green-800 border-green-200";
       default:
-        return "bg-muted text-muted-foreground border-border";
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
@@ -214,66 +231,106 @@ const Checklist = () => {
                   </div>
                 </CardHeader>
                 
-                {/* Section Items */}
-                <CardContent className="pt-0 space-y-4">
-                  {section.items.map((item) => (
-                    <div 
-                      key={item.id} 
-                      className="border border-border/30 rounded-lg p-4 hover:bg-muted/30 transition-colors"
-                    >
-                      <div className="flex items-start space-x-3 mb-3">
-                        <Checkbox
-                          id={item.id}
-                          checked={checkedItems[item.id] || false}
-                          onCheckedChange={() => handleItemCheck(item.id)}
-                          className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <label 
-                            htmlFor={item.id}
-                            className={`block text-sm font-medium cursor-pointer transition-colors ${
-                              checkedItems[item.id] 
-                                ? 'text-muted-foreground line-through' 
-                                : 'text-foreground hover:text-primary'
-                            }`}
-                          >
-                            {item.task}
-                          </label>
-                        </div>
-                        <Badge 
-                          variant="secondary" 
-                          className={`text-xs ${getPriorityColor(item.priority)} shrink-0`}
-                        >
-                          {item.priority}
-                        </Badge>
-                      </div>
+                {/* Section Items - Monday.com Style */}
+                <CardContent className="pt-0">
+                  <div className="grid gap-3">
+                    {section.items.map((item) => {
+                      const selectedTheme = taskThemes[item.id];
+                      const themeColor = selectedTheme ? getThemeColor(selectedTheme) : "bg-gray-200";
                       
-                      {/* Theme Selector */}
-                      <div className="ml-6 max-w-xs">
-                        <Label htmlFor={`theme-${item.id}`} className="text-xs text-muted-foreground mb-1 block">
-                          Tema da Tarefa
-                        </Label>
-                        <Select 
-                          value={taskThemes[item.id] || ""} 
-                          onValueChange={(value) => handleThemeChange(item.id, value)}
+                      return (
+                        <div 
+                          key={item.id} 
+                          className={`group relative bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 animate-fade-in ${
+                            checkedItems[item.id] ? 'opacity-70' : ''
+                          }`}
                         >
-                          <SelectTrigger 
-                            id={`theme-${item.id}`}
-                            className="h-8 text-xs bg-background border-border/50"
-                          >
-                            <SelectValue placeholder="Selecione um tema" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-background border border-border shadow-lg z-50">
-                            {themeOptions.map((theme) => (
-                              <SelectItem key={theme} value={theme} className="text-xs">
-                                {theme}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  ))}
+                          {/* Colored left border */}
+                          <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${themeColor}`} />
+                          
+                          <div className="p-4 pl-6">
+                            {/* Main task row */}
+                            <div className="flex items-center gap-3 mb-3">
+                              <Checkbox
+                                id={item.id}
+                                checked={checkedItems[item.id] || false}
+                                onCheckedChange={() => handleItemCheck(item.id)}
+                                className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500 hover:border-green-400 transition-colors"
+                              />
+                              <div className="flex-1">
+                                <label 
+                                  htmlFor={item.id}
+                                  className={`block font-medium cursor-pointer transition-all duration-200 ${
+                                    checkedItems[item.id] 
+                                      ? 'text-gray-400 line-through' 
+                                      : 'text-gray-800 hover:text-blue-600'
+                                  }`}
+                                >
+                                  {item.task}
+                                </label>
+                              </div>
+                              <Badge 
+                                className={`${getPriorityColor(item.priority)} font-medium px-2 py-1 text-xs rounded-full`}
+                              >
+                                {item.priority}
+                              </Badge>
+                            </div>
+                            
+                            {/* Bottom row with theme selector */}
+                            <div className="flex items-center gap-3">
+                              <div className="flex-1">
+                                <Select 
+                                  value={taskThemes[item.id] || ""} 
+                                  onValueChange={(value) => handleThemeChange(item.id, value)}
+                                >
+                                  <SelectTrigger 
+                                    className={`h-8 text-xs border-gray-200 hover:border-gray-300 transition-colors ${
+                                      selectedTheme ? 'bg-gray-50' : 'bg-white'
+                                    }`}
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      {selectedTheme && (
+                                        <div className={`w-3 h-3 rounded-full ${themeColor}`} />
+                                      )}
+                                      <SelectValue placeholder="Selecionar tema" />
+                                    </div>
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                                    {themeOptions.map((theme) => (
+                                      <SelectItem key={theme} value={theme} className="text-sm hover:bg-gray-50">
+                                        <div className="flex items-center gap-2">
+                                          <div className={`w-3 h-3 rounded-full ${getThemeColor(theme)}`} />
+                                          {theme}
+                                        </div>
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              
+                              {/* Status indicator */}
+                              <div className="flex items-center gap-2">
+                                {checkedItems[item.id] ? (
+                                  <div className="flex items-center gap-1 text-green-600 text-xs">
+                                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                                    Concluído
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-1 text-gray-400 text-xs">
+                                    <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                                    Pendente
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Hover overlay */}
+                          <div className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-20 transition-opacity duration-200 rounded-lg pointer-events-none" />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </CardContent>
               </Card>
             );
