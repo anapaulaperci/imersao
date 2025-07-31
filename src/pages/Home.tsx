@@ -39,59 +39,94 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen relative">
-
-      {/* Hero */}
-      <div className="bg-background">
-        <div className="max-w-5xl mx-auto px-4 xl:px-0 pt-24 lg:pt-32 pb-12 md:pb-24">
-          {/* Brands */}
-          <div className="mb-3 py-1 px-3 inline-flex items-center gap-x-1.5 bg-muted/20 border border-border text-foreground text-sm rounded-full">
-            <div className="-ms-2 flex items-center -space-x-3">
-              <div className="size-7 flex shrink-0 justify-center items-center bg-primary/10 rounded-full">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+          <div className="text-center">
+            {/* Badge */}
+            <div className="mb-8 inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 text-sm rounded-full px-4 py-2 shadow-sm">
+              <div className="w-6 h-6 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/7433a794-51a8-45eb-81be-aeaccb87a06f.png" 
                   alt="Logo" 
-                  className="w-5 h-5 object-contain"
+                  className="w-4 h-4 object-contain"
                 />
               </div>
+              Sem pressa e sem pausa
             </div>
 
-            Sem pressa e sem pausa
-          </div>
-          {/* End Brands */}
+            {/* Main Title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                Imersão de Posicionamento,
+              </span>
+              <br />
+              <span className="text-gray-800">
+                produção de conteúdo e vendas.
+              </span>
+            </h1>
 
-          <h1 className="font-semibold text-foreground text-5xl md:text-6xl">
-            <span className="text-primary">Imersão de Posicionamento,</span> produção de conteúdo e vendas.
-          </h1>
-          <div className="max-w-4xl">
-            <p className="mt-5 text-xl font-semibold text-foreground">
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 font-medium">
               Por: Ana Paula Perci e Convidados.
             </p>
-          </div>
-        </div>
 
-        <div className="max-w-6xl mx-auto px-4 xl:px-0">
-          <div className="h-100 md:h-150 bg-[url('https://images.unsplash.com/photo-1743360543515-d3b506e6d3c2?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center bg-cover bg-no-repeat relative rounded-xl">
-            {/* Play Button */}
-            <div className="absolute top-1/2 start-1/2 -translate-y-1/2 -translate-x-1/2">
-              <button type="button" className="size-16 flex shrink-0 justify-center items-center bg-primary text-primary-foreground rounded-full hover:scale-115 focus:outline-hidden focus:scale-115 transition-all duration-200">
-                <svg className="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-              </button>
+            {/* CTA Button */}
+            <Link to="/cronograma">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Começar Jornada
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+
+            {/* Hero Image */}
+            <div className="mt-16 relative">
+              <div className="relative max-w-4xl mx-auto">
+                <div className="aspect-video bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+                  <div 
+                    className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 bg-cover bg-center relative"
+                    style={{
+                      backgroundImage: `url('https://images.unsplash.com/photo-1743360543515-d3b506e6d3c2?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
+                    }}
+                  >
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/20" />
+                    
+                    {/* Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button 
+                        type="button" 
+                        className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+                      >
+                        <svg className="w-8 h-8 text-purple-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl opacity-20 animate-pulse"></div>
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-purple-300 to-purple-500 rounded-full opacity-15 animate-pulse delay-1000"></div>
+              </div>
             </div>
-            {/* End Play Button */}
           </div>
         </div>
-      </div>
-      {/* End Hero */}
+      </section>
 
       {/* Speakers Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Nossos Palestrantes
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Nossos <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Palestrantes</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Conheça os especialistas que compartilharão seus conhecimentos na imersão
             </p>
           </div>
@@ -106,8 +141,8 @@ const Home = () => {
                 className="group cursor-pointer text-center"
               >
                 <div className="transition-all duration-300 hover:-translate-y-2">
-                  <div className="relative mb-4">
-                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-lg">
+                  <div className="relative mb-6">
+                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                       <img 
                         src={speaker.image}
                         alt={speaker.name}
@@ -115,21 +150,21 @@ const Home = () => {
                       />
                     </div>
                     <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="p-2 bg-white/90 rounded-full shadow-lg">
-                        <Instagram className="h-4 w-4 text-pink-600" />
+                      <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full shadow-lg">
+                        <Instagram className="h-4 w-4" />
                       </div>
                     </div>
                   </div>
                   
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">
+                  <div className="space-y-3">
+                    <h3 className="font-bold text-xl text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
                       {speaker.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-gray-600 font-medium">
                       {speaker.description}
                     </p>
                     {speaker.bio && (
-                      <p className="text-xs text-muted-foreground line-clamp-3 max-w-xs mx-auto">
+                      <p className="text-xs text-gray-500 line-clamp-3 max-w-xs mx-auto leading-relaxed">
                         {speaker.bio}
                       </p>
                     )}
@@ -142,20 +177,26 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-primary-glow">
+      <section className="py-20 bg-gradient-to-r from-purple-50 to-purple-100">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Pronto para começar sua jornada?
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Junte-se a centenas de profissionais que já transformaram suas carreiras
-          </p>
-          <Link to="/cronograma">
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
-              Iniciar Imersão
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="bg-white rounded-3xl p-12 shadow-xl border border-purple-100">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Pronto para começar sua 
+              <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent"> jornada?</span>
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Junte-se a centenas de profissionais que já transformaram suas carreiras
+            </p>
+            <Link to="/cronograma">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Iniciar Imersão
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
