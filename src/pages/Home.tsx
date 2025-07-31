@@ -1,46 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { BookOpen, Calendar, FileText, CheckSquare, User, ArrowRight, Star, Target, Zap, Instagram } from "lucide-react";
+import { ArrowRight, Instagram } from "lucide-react";
 
 const Home = () => {
-  const features = [
-    {
-      icon: Calendar,
-      title: "Cronograma Estruturado",
-      description: "Organize seus estudos com um cronograma personalizado",
-      color: "text-accent",
-      path: "/cronograma"
-    },
-    {
-      icon: FileText,
-      title: "Resumos Completos",
-      description: "Acesse materiais de estudo organizados e resumos práticos",
-      color: "text-primary",
-      path: "/resumos"
-    },
-    {
-      icon: CheckSquare,
-      title: "Checklist de Progresso",
-      description: "Acompanhe seu progresso com checklists interativos",
-      color: "text-success",
-      path: "/checklist"
-    },
-    {
-      icon: User,
-      title: "Perfil Personalizado",
-      description: "Gerencie suas informações e acompanhe estatísticas",
-      color: "text-foreground",
-      path: "/perfil"
-    }
-  ];
-
-  const stats = [
-    { icon: Star, value: "100+", label: "Conteúdos" },
-    { icon: Target, value: "95%", label: "Taxa de Sucesso" },
-    { icon: Zap, value: "24/7", label: "Acesso" }
-  ];
-
   const speakers = [
     {
       name: "Ana Paula Perci",
@@ -120,63 +83,6 @@ const Home = () => {
         </div>
       </div>
       {/* End Hero */}
-
-      {/* Stats Section */}
-      <section className="py-16 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors duration-300">
-                    <stat.icon className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Tudo que você precisa em um só lugar
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Ferramentas completas para acelerar seu aprendizado em posicionamento de marca
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Link key={index} to={feature.path} className="group">
-                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border hover:border-primary/20">
-                  <CardHeader className="text-center">
-                    <div className="flex justify-center mb-4">
-                      <div className="p-3 bg-muted rounded-xl group-hover:bg-primary/10 transition-colors duration-300">
-                        <feature.icon className={`h-8 w-8 ${feature.color} group-hover:text-primary transition-colors duration-300`} />
-                      </div>
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors duration-300">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-center">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Speakers Section */}
       <section className="py-20 bg-background">
