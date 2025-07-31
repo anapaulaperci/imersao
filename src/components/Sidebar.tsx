@@ -101,8 +101,8 @@ const Sidebar = () => {
               to="/"
             >
               <div className="flex items-center space-x-3">
-                <BookOpen className="h-8 w-8 text-white" />
-                <span className="text-white font-bold text-lg">Posicionamento</span>
+                <img src="/src/assets/logo.png" alt="Ana Paula Perci" className="h-8 w-8" />
+                <span className="text-white font-bold text-lg">Ana Paula Perci</span>
               </div>
             </Link>
           </header>
@@ -199,13 +199,13 @@ const Sidebar = () => {
             <div className="px-7">
               <div className="flex">
                 <button className="group w-full inline-flex items-center py-3 text-start text-white align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
-                  <BookOpen className="size-8 shrink-0 text-white/80" />
+                  <img src="/src/assets/logo.png" alt="Ana Paula Perci" className="size-8 shrink-0" />
                   <span className="block ms-3">
                     <span className="block text-sm font-medium text-white group-hover:text-white/70 group-focus-hover:text-white/70">
-                      Posicionamento
+                      Ana Paula Perci
                     </span>
                     <span className="block text-xs text-white/70">
-                      app.posicionamento.com
+                      anapaulaperci.com
                     </span>
                   </span>
                 </button>
