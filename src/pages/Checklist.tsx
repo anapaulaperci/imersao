@@ -2,7 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CheckSquare, Circle, Trophy, Target, Clock, TrendingUp } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { CheckSquare, Circle, Trophy, Target, Clock, TrendingUp, Plus } from "lucide-react";
 import { useState } from "react";
 
 const Checklist = () => {
@@ -109,168 +110,129 @@ const Checklist = () => {
   const totalProgress = getTotalProgress();
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-primary/10 rounded-2xl">
-              <CheckSquare className="h-12 w-12 text-primary" />
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground mb-2">
+                Product Design Checklist
+              </h1>
+              <p className="text-muted-foreground">
+                Track your progress through design milestones
+              </p>
             </div>
+            <Button variant="outline" size="sm">
+              <Plus className="h-4 w-4 mr-2" />
+              Add Item
+            </Button>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Checklist de Progresso
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Acompanhe seu progresso e garanta que está seguindo todos os passos importantes
-          </p>
+          
+          {/* Progress Bar */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">Overall Progress</span>
+              <span className="font-medium text-foreground">{totalProgress}%</span>
+            </div>
+            <Progress value={totalProgress} className="h-2" />
+          </div>
         </div>
 
-        {/* Progress Overview */}
-        <Card className="mb-8 bg-gradient-to-r from-primary to-primary-glow border-0">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between text-white mb-4">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Progresso Geral</h3>
-                <p className="text-white/90">Continue assim! Você está indo muito bem.</p>
-              </div>
-              <div className="text-right">
-                <div className="text-4xl font-bold">{totalProgress}%</div>
-                <div className="text-white/90">Concluído</div>
-              </div>
-            </div>
-            <div className="bg-white/20 rounded-full h-3">
-              <div 
-                className="bg-white rounded-full h-3 transition-all duration-500 ease-out" 
-                style={{ width: `${totalProgress}%` }}
-              ></div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="text-center border-border">
-            <CardContent className="p-6">
-              <Clock className="h-8 w-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground mb-1">13</div>
-              <div className="text-sm text-muted-foreground">Total de Tarefas</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-border">
-            <CardContent className="p-6">
-              <CheckSquare className="h-8 w-8 text-success mx-auto mb-2" />
-              <div className="text-2xl font-bold text-success mb-1">
-                {Object.values(checkedItems).filter(Boolean).length}
-              </div>
-              <div className="text-sm text-muted-foreground">Concluídas</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-border">
-            <CardContent className="p-6">
-              <Target className="h-8 w-8 text-accent mx-auto mb-2" />
-              <div className="text-2xl font-bold text-accent mb-1">
-                {13 - Object.values(checkedItems).filter(Boolean).length}
-              </div>
-              <div className="text-sm text-muted-foreground">Pendentes</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-border">
-            <CardContent className="p-6">
-              <Trophy className="h-8 w-8 text-primary mb-2 mx-auto" />
-              <div className="text-2xl font-bold text-primary mb-1">
-                {sections.filter(s => getSectionProgress(s.id) === 100).length}
-              </div>
-              <div className="text-sm text-muted-foreground">Seções Completas</div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Checklist Sections */}
-        <div className="space-y-6">
+        {/* Checklist Items */}
+        <div className="space-y-4">
           {sections.map((section) => {
             const progress = getSectionProgress(section.id);
             const SectionIcon = section.icon;
             
             return (
-              <Card key={section.id} className="overflow-hidden border-border">
-                <CardHeader className="bg-card border-b border-border">
+              <Card key={section.id} className="border border-border/50 shadow-sm">
+                {/* Section Header */}
+                <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-full">
-                        <SectionIcon className={`h-6 w-6 ${section.color}`} />
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <SectionIcon className="h-4 w-4 text-primary" />
                       </div>
                       <div>
-                        <CardTitle className="text-xl text-foreground">{section.title}</CardTitle>
-                        <CardDescription>{section.description}</CardDescription>
+                        <CardTitle className="text-lg font-semibold text-foreground">
+                          {section.title}
+                        </CardTitle>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          {section.description}
+                        </CardDescription>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-primary mb-1">{progress}%</div>
-                      <div className="w-24 bg-muted rounded-full h-2">
+                      <div className="text-sm font-medium text-muted-foreground mb-1">
+                        {section.items.filter(item => checkedItems[item.id]).length}/{section.items.length}
+                      </div>
+                      <div className="w-16 h-1 bg-muted rounded-full overflow-hidden">
                         <div 
-                          className="bg-primary rounded-full h-2 transition-all duration-500 ease-out" 
+                          className="h-full bg-primary rounded-full transition-all duration-300" 
                           style={{ width: `${progress}%` }}
-                        ></div>
+                        />
                       </div>
                     </div>
                   </div>
                 </CardHeader>
                 
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {section.items.map((item) => (
-                      <div key={item.id} className="flex items-center space-x-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors duration-200">
-                        <Checkbox
-                          id={item.id}
-                          checked={checkedItems[item.id] || false}
-                          onCheckedChange={() => handleItemCheck(item.id)}
-                          className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-                        />
-                        <div className="flex-1">
-                          <label 
-                            htmlFor={item.id}
-                            className={`font-medium cursor-pointer transition-colors duration-200 ${
-                              checkedItems[item.id] 
-                                ? 'text-muted-foreground line-through' 
-                                : 'text-foreground hover:text-primary'
-                            }`}
-                          >
-                            {item.task}
-                          </label>
-                        </div>
-                        <Badge className={getPriorityColor(item.priority)} variant="outline">
-                          {item.priority}
-                        </Badge>
+                {/* Section Items */}
+                <CardContent className="pt-0 space-y-3">
+                  {section.items.map((item) => (
+                    <div 
+                      key={item.id} 
+                      className="flex items-start space-x-3 group hover:bg-muted/30 p-3 rounded-lg transition-colors"
+                    >
+                      <Checkbox
+                        id={item.id}
+                        checked={checkedItems[item.id] || false}
+                        onCheckedChange={() => handleItemCheck(item.id)}
+                        className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <label 
+                          htmlFor={item.id}
+                          className={`block text-sm font-medium cursor-pointer transition-colors ${
+                            checkedItems[item.id] 
+                              ? 'text-muted-foreground line-through' 
+                              : 'text-foreground group-hover:text-primary'
+                          }`}
+                        >
+                          {item.task}
+                        </label>
                       </div>
-                    ))}
-                  </div>
+                      <Badge 
+                        variant="secondary" 
+                        className={`text-xs ${getPriorityColor(item.priority)} shrink-0`}
+                      >
+                        {item.priority}
+                      </Badge>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        {/* Action Buttons */}
-        <div className="mt-12 text-center space-y-4">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="px-8">
-              Baixar Checklist PDF
-            </Button>
-            <Button size="lg" variant="outline" className="px-8">
-              Compartilhar Progresso
-            </Button>
-          </div>
-          {totalProgress === 100 && (
-            <Card className="bg-success-light border-success/20 max-w-md mx-auto">
-              <CardContent className="p-6 text-center">
-                <Trophy className="h-12 w-12 text-success mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-success mb-2">Parabéns!</h3>
-                <p className="text-success">Você completou todos os itens do checklist!</p>
-              </CardContent>
-            </Card>
-          )}
+        {/* Footer Actions */}
+        <div className="mt-8 flex justify-center">
+          <Button variant="outline" size="sm">
+            Export Progress
+          </Button>
         </div>
+
+        {/* Success Message */}
+        {totalProgress === 100 && (
+          <Card className="mt-6 border-green-200 bg-green-50">
+            <CardContent className="p-6 text-center">
+              <Trophy className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-green-800 mb-2">Congratulations!</h3>
+              <p className="text-green-700">You've completed all checklist items!</p>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
