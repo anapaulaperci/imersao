@@ -131,7 +131,7 @@ const Sidebar = () => {
           </header>
 
           {/* Navigation Content */}
-          <div className="flex-1 overflow-y-auto px-2 lg:px-0">
+          <div className="flex-1 overflow-y-hidden px-2 lg:px-0">
             {/* Desktop Navigation - Collapsed Icons */}
             <nav className="mt-6 hidden lg:block">
               <ul className="text-center space-y-2">
