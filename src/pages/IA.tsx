@@ -3,50 +3,70 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Brain, MessageSquare, FileText, Lightbulb, Zap, Star, Send, Bot } from "lucide-react";
+import { Brain, MessageSquare, FileText, Lightbulb, Zap, Star, Send, Bot, Target, Users, TrendingUp, BookOpen } from "lucide-react";
 import { useState } from "react";
 
 const IA = () => {
+  const [selectedAI, setSelectedAI] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: "assistant",
-      content: "Olá! Sou sua assistente de IA especializada em posicionamento de marca. Como posso ajudar você hoje?",
+      content: "Olá! Selecione uma das IAs especializadas para começar nossa conversa.",
       timestamp: new Date()
     }
   ]);
 
-  const suggestions = [
+  const aiOptions = [
     {
-      icon: Lightbulb,
-      title: "Análise de Posicionamento",
-      description: "Analise minha estratégia atual de posicionamento",
-      prompt: "Preciso de uma análise completa da minha estratégia de posicionamento atual. Me ajude a identificar pontos fortes e oportunidades de melhoria."
+      id: "matriz-icp",
+      title: "IA de Matriz de ICP",
+      description: "Especializada em criação e análise de Ideal Customer Profile",
+      icon: Target,
+      color: "bg-blue-500",
+      prompt: "Sou especialista em Matriz de ICP (Ideal Customer Profile). Posso te ajudar a criar e analisar perfis detalhados dos seus clientes ideais, incluindo demografia, psicografia, comportamentos e necessidades."
     },
     {
+      id: "linha-editorial",
+      title: "IA de Linha Editorial",
+      description: "Criação de estratégias de conteúdo e calendário editorial",
       icon: FileText,
-      title: "Criação de Personas",
-      description: "Crie personas detalhadas para meu negócio",
-      prompt: "Me ajude a criar personas detalhadas para meu negócio. Quais informações você precisa para desenvolver perfis completos dos meus clientes ideais?"
+      color: "bg-green-500",
+      prompt: "Sou especialista em Linha Editorial. Posso te ajudar a criar estratégias de conteúdo, desenvolver calendários editoriais, definir tom de voz e criar pilares de conteúdo alinhados com seu posicionamento."
     },
     {
-      icon: Zap,
-      title: "Proposta de Valor",
-      description: "Desenvolva uma proposta de valor única",
-      prompt: "Quero desenvolver uma proposta de valor única e diferenciada. Me oriente sobre como identificar e comunicar o valor único que ofereço ao mercado."
+      id: "posicionamento",
+      title: "IA de Posicionamento",
+      description: "Estratégias completas de posicionamento de marca",
+      icon: TrendingUp,
+      color: "bg-purple-500",
+      prompt: "Sou especialista em Posicionamento de Marca. Posso te ajudar a definir sua proposta de valor única, diferenciação competitiva, messaging framework e estratégias de comunicação para se destacar no mercado."
     },
     {
-      icon: Star,
-      title: "Diferenciação Competitiva",
-      description: "Identifique oportunidades de diferenciação",
-      prompt: "Como posso me diferenciar da concorrência? Me ajude a identificar oportunidades únicas de posicionamento no meu mercado."
+      id: "estudos-imersao",
+      title: "IA de Estudos da Imersão",
+      description: "Revisão e aplicação dos conteúdos da imersão",
+      icon: BookOpen,
+      color: "bg-orange-500",
+      prompt: "Sou especialista nos Estudos da Imersão Posicionamento. Posso te ajudar a revisar os conteúdos, esclarecer dúvidas, aplicar os aprendizados ao seu negócio e criar planos de implementação práticos."
     }
   ];
 
+  const handleAISelection = (ai: any) => {
+    setSelectedAI(ai.id);
+    const aiMessage = {
+      id: messages.length + 1,
+      type: "assistant",
+      content: ai.prompt,
+      timestamp: new Date()
+    };
+    setMessages([aiMessage]);
+  };
+
   const handleSendMessage = async () => {
-    if (!prompt.trim()) return;
+    if (!prompt.trim() || !selectedAI) return;
 
     setIsLoading(true);
     const userMessage = {
@@ -61,10 +81,11 @@ const IA = () => {
 
     // Simular resposta da IA (aqui você integraria com uma API real)
     setTimeout(() => {
+      const selectedAIData = aiOptions.find(ai => ai.id === selectedAI);
       const aiResponse = {
         id: messages.length + 2,
         type: "assistant",
-        content: "Obrigada pela sua pergunta! Com base na minha especialização em posicionamento de marca, vou te ajudar a desenvolver uma estratégia sólida. Para começar, preciso entender melhor seu contexto atual...",
+        content: `Como ${selectedAIData?.title}, vou te ajudar com essa questão. Com base na minha especialização, aqui estão minhas recomendações...`,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, aiResponse]);
@@ -72,9 +93,19 @@ const IA = () => {
     }, 2000);
   };
 
-  const handleSuggestionClick = (suggestion: any) => {
-    setPrompt(suggestion.prompt);
+  const resetChat = () => {
+    setSelectedAI(null);
+    setMessages([
+      {
+        id: 1,
+        type: "assistant",
+        content: "Olá! Selecione uma das IAs especializadas para começar nossa conversa.",
+        timestamp: new Date()
+      }
+    ]);
   };
+
+  const selectedAIData = aiOptions.find(ai => ai.id === selectedAI);
 
   return (
     <div className="p-2 sm:p-5 sm:py-0 md:pt-5 space-y-5">
@@ -86,16 +117,62 @@ const IA = () => {
           </div>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          IA Assistant - Posicionamento
+          Centro de IAs Especializadas
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Sua assistente especializada em estratégias de posicionamento de marca
+          Escolha sua assistente especializada para diferentes aspectos do posicionamento
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Chat Interface */}
-        <div className="lg:col-span-2">
+      {!selectedAI ? (
+        /* AI Selection Grid */
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {aiOptions.map((ai) => (
+            <Card 
+              key={ai.id} 
+              className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50"
+              onClick={() => handleAISelection(ai)}
+            >
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className={`p-4 ${ai.color} rounded-2xl`}>
+                    <ai.icon className="h-8 w-8 text-white" />
+                  </div>
+                </div>
+                <CardTitle className="text-xl">{ai.title}</CardTitle>
+                <CardDescription className="text-center">
+                  {ai.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button className="w-full" variant="outline">
+                  Iniciar Conversa
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        /* Chat Interface */
+        <div className="max-w-4xl mx-auto">
+          {/* Selected AI Header */}
+          <div className="mb-6 p-4 bg-muted rounded-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`p-3 ${selectedAIData?.color} rounded-xl`}>
+                  <selectedAIData.icon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">{selectedAIData?.title}</h2>
+                  <p className="text-muted-foreground">{selectedAIData?.description}</p>
+                </div>
+              </div>
+              <Button variant="outline" onClick={resetChat}>
+                Trocar IA
+              </Button>
+            </div>
+          </div>
+
           <Card className="h-[600px] flex flex-col">
             <CardHeader className="border-b">
               <div className="flex items-center gap-3">
@@ -103,9 +180,9 @@ const IA = () => {
                   <Bot className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <CardTitle className="text-lg">Chat com IA</CardTitle>
+                  <CardTitle className="text-lg">Chat Especializado</CardTitle>
                   <CardDescription>
-                    Converse com nossa especialista em posicionamento
+                    Conversando com {selectedAIData?.title}
                   </CardDescription>
                 </div>
               </div>
@@ -149,7 +226,7 @@ const IA = () => {
             <div className="border-t p-4">
               <div className="flex gap-2">
                 <Textarea
-                  placeholder="Digite sua pergunta sobre posicionamento..."
+                  placeholder={`Digite sua pergunta para ${selectedAIData?.title}...`}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   onKeyPress={(e) => {
@@ -172,90 +249,7 @@ const IA = () => {
             </div>
           </Card>
         </div>
-
-        {/* Sidebar */}
-        <div className="space-y-6">
-          {/* Quick Suggestions */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <MessageSquare className="h-5 w-5" />
-                Sugestões Rápidas
-              </CardTitle>
-              <CardDescription>
-                Clique para usar como ponto de partida
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {suggestions.map((suggestion, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  className="w-full text-left p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <suggestion.icon className="h-4 w-4 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-sm">{suggestion.title}</h4>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {suggestion.description}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Features */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Recursos da IA</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
-                  <Brain className="h-3 w-3 mr-1" />
-                  Análise Estratégica
-                </Badge>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
-                  <FileText className="h-3 w-3 mr-1" />
-                  Criação de Conteúdo
-                </Badge>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
-                  <Lightbulb className="h-3 w-3 mr-1" />
-                  Insights Personalizados
-                </Badge>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="text-xs">
-                  <Zap className="h-3 w-3 mr-1" />
-                  Respostas Instantâneas
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tips */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Dicas de Uso</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>• Seja específico em suas perguntas</p>
-              <p>• Compartilhe contexto sobre seu negócio</p>
-              <p>• Use as sugestões como ponto de partida</p>
-              <p>• Faça perguntas de acompanhamento</p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

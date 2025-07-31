@@ -67,6 +67,12 @@ const Sidebar = () => {
       path: "/resumos"
     },
     {
+      id: "anotacoes",
+      title: "Anotações",
+      icon: FileText,
+      path: "/anotacoes"
+    },
+    {
       id: "checklist",
       title: "Plano de Implementação",
       icon: CheckSquare,
