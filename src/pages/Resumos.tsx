@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BookOpen, User, Play, Star, ArrowRight } from "lucide-react";
+import { BookOpen, User, Play, Star, ArrowRight, Download } from "lucide-react";
 
 const Resumos = () => {
   const navigate = useNavigate();
@@ -187,6 +187,10 @@ const Resumos = () => {
 
                     {/* Action Buttons */}
                     <div className="flex items-center gap-3">
+                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                        <Download className="h-4 w-4 mr-2" />
+                        Baixar PDF
+                      </Button>
                       <Button 
                         className="group/btn"
                         onClick={() => openPalestraContent(resumo)}
@@ -196,6 +200,9 @@ const Resumos = () => {
                       </Button>
                     </div>
                   </div>
+
+                  {/* Spacer */}
+                  <div className="mt-8"></div>
 
                 </div>
 
