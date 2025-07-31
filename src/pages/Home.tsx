@@ -69,7 +69,7 @@ const Home = () => {
             <span className="text-primary">Imersão de Posicionamento,</span> produção de conteúdo e vendas.
           </h1>
           <div className="max-w-4xl">
-            <p className="mt-5 text-muted-foreground text-lg">
+            <p className="mt-5 text-xl font-semibold text-foreground">
               Por: Ana Paula Perci e Convidados.
             </p>
           </div>
@@ -77,17 +77,6 @@ const Home = () => {
 
         <div className="max-w-6xl mx-auto px-4 xl:px-0">
           <div className="h-100 md:h-150 bg-[url('https://images.unsplash.com/photo-1743360543515-d3b506e6d3c2?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center bg-cover bg-no-repeat relative rounded-xl">
-            {/* Card */}
-            <div className="absolute bottom-0 start-0 end-0 max-w-xs p-6 md:start-auto">
-              <svg className="shrink-0 size-8 mb-2" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.00012207 32H32.0001V0H0.00012207V32Z" fill="#E60012"/>
-                <path d="M18.1935 14.1437H27.2813V12.1342H18.1935V14.1437ZM19.1982 6.40096H26.2765V4.37859H19.1982V6.40096ZM11.7939 4.37859H5.72034V6.40096H9.76512V12.1342H4.71882V14.1437H13.8131V12.1342H11.7939V4.37859ZM25.2589 25.6006H20.2061V19.877H25.2589V25.6006ZM27.2812 17.8482H18.1934V27.6247H27.2812V17.8482ZM5.72034 17.8482L4.6898 22.7429H6.70897L7.32018 19.877H11.3746L10.1877 25.6006H4.10439L3.70764 27.6246H11.7939L13.8131 17.8482H5.72034Z" fill="white"/>
-              </svg>
-              <h3 className="text-lg font-semibold text-white sm:text-2xl">Ana Paula Perci</h3>
-              <p className="mt-1 text-white">Especialista em Posicionamento de Marca</p>
-            </div>
-            {/* End Card */}
-
             {/* Play Button */}
             <div className="absolute top-1/2 start-1/2 -translate-y-1/2 -translate-x-1/2">
               <button type="button" className="size-16 flex shrink-0 justify-center items-center bg-primary text-primary-foreground rounded-full hover:scale-115 focus:outline-hidden focus:scale-115 transition-all duration-200">
