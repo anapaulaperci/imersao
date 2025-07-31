@@ -107,14 +107,12 @@ const Home = () => {
               >
                 <div className="transition-all duration-300 hover:-translate-y-2">
                   <div className="relative mb-4">
-                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-transparent bg-gradient-to-br from-purple-500 via-purple-600 to-purple-800 p-0.5 group-hover:from-purple-400 group-hover:via-purple-500 group-hover:to-purple-700 transition-all duration-300 shadow-lg">
-                      <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                        <img 
-                          src={speaker.image}
-                          alt={speaker.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                        />
-                      </div>
+                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-lg">
+                      <img 
+                        src={speaker.image}
+                        alt={speaker.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
                     <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="p-2 bg-white/90 rounded-full shadow-lg">
