@@ -292,162 +292,153 @@ const Cronograma = () => {
               </div>
 
               {/* Timeline Events */}
-              <div className="relative">
-                {/* Timeline Line */}
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border"></div>
+              <div className="px-4">
+                {dayEvents.map((event, index) => {
+                  const activityType = getActivityType(event.type);
+                  const track = getTrack(event.track);
+                  const ActivityIcon = activityType.icon;
+                  const isExpanded = expandedCards[event.id];
+                  const isLastItem = index === dayEvents.length - 1;
 
-                <div className="space-y-6">
-                  {dayEvents.map((event, index) => {
-                    const activityType = getActivityType(event.type);
-                    const track = getTrack(event.track);
-                    const ActivityIcon = activityType.icon;
-                    const isExpanded = expandedCards[event.id];
-
-                    return (
-                      <div key={event.id} className="relative">
-                        {/* Timeline Node */}
-                        <div className={`absolute left-0 w-8 h-8 rounded-full border-4 border-background ${activityType.color} flex items-center justify-center z-10`}>
-                          <ActivityIcon className="h-4 w-4 text-white" />
-                        </div>
-
-                        {/* Event Card */}
-                        <div className="ml-12">
-                          <Card className={`transition-all duration-300 hover:shadow-lg border-l-4 ${
-                            event.isLive ? 'border-l-success shadow-md animate-pulse' :
-                            event.isUpcoming ? 'border-l-warning' :
-                            'border-l-muted'
-                          }`}>
-                            <CardHeader className="pb-3">
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-3 mb-2">
-                                    <Badge className={`${activityType.color} text-white`}>
-                                      {activityType.name}
-                                    </Badge>
-                                    {event.track !== "all" && (
-                                      <Badge variant="outline" className="border-border">
-                                        <div className={`w-2 h-2 rounded-full ${track.color} mr-1`}></div>
-                                        {track.name}
-                                      </Badge>
-                                    )}
-                                    {event.isLive && (
-                                      <Badge className="bg-success text-success-foreground animate-pulse">
-                                        AO VIVO
-                                      </Badge>
-                                    )}
-                                    {event.isUpcoming && (
-                                      <Badge className="bg-warning text-warning-foreground">
-                                        EM BREVE
-                                      </Badge>
-                                    )}
-                                  </div>
-                                  
-                                  <CardTitle className="text-xl leading-tight mb-2">
-                                    {event.title}
-                                  </CardTitle>
-                                  
-                                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                                    <div className="flex items-center gap-1">
-                                      <Clock className="h-4 w-4" />
-                                      {event.time} ({event.duration})
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <MapPin className="h-4 w-4" />
-                                      {event.location}
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-4 w-4" />
-                                      {event.registered}/{event.capacity}
-                                    </div>
-                                  </div>
-
-                                  {event.speaker && (
-                                    <div className="flex items-center gap-2 mt-3">
-                                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                        <User className="h-4 w-4 text-primary" />
-                                      </div>
-                                      <div>
-                                        <div className="font-medium text-sm">{event.speaker}</div>
-                                        <div className="text-xs text-muted-foreground">{event.speakerRole}</div>
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-
-                                <div className="flex flex-col gap-2">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => addToCalendar(event)}
-                                    className="whitespace-nowrap"
-                                  >
-                                    <Plus className="h-4 w-4 mr-1" />
-                                    Calendário
-                                  </Button>
-                                  
-                                  {event.description && (
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      onClick={() => toggleCard(event.id)}
-                                      className="whitespace-nowrap"
-                                    >
-                                      {isExpanded ? (
-                                        <>
-                                          <ChevronUp className="h-4 w-4 mr-1" />
-                                          Menos
-                                        </>
-                                      ) : (
-                                        <>
-                                          <ChevronDown className="h-4 w-4 mr-1" />
-                                          Detalhes
-                                        </>
-                                      )}
-                                    </Button>
-                                  )}
-                                </div>
-                              </div>
-                            </CardHeader>
-
-                            {isExpanded && (
-                              <CardContent className="pt-0 border-t border-border">
-                                <div className="space-y-4">
-                                  <div>
-                                    <h4 className="font-medium text-foreground mb-2">Descrição</h4>
-                                    <p className="text-muted-foreground">{event.description}</p>
-                                  </div>
-
-                                  {event.objectives.length > 0 && (
-                                    <div>
-                                      <h4 className="font-medium text-foreground mb-2">Objetivos</h4>
-                                      <ul className="space-y-1">
-                                        {event.objectives.map((objective, idx) => (
-                                          <li key={idx} className="flex items-start gap-2 text-muted-foreground">
-                                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                                            {objective}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  )}
-
-                                  <div className="flex gap-3 pt-4">
-                                    <Button size="sm" className="flex-1">
-                                      Participar
-                                    </Button>
-                                    <Button variant="outline" size="sm" className="flex-1">
-                                      Mais Informações
-                                    </Button>
-                                  </div>
-                                </div>
-                              </CardContent>
-                            )}
-                          </Card>
+                  return (
+                    <div key={event.id} className="flex items-start gap-x-4">
+                      {/* Icon */}
+                      <div className={`relative ${!isLastItem ? 'after:absolute after:inset-y-0 after:start-3 after:w-px after:h-full after:-translate-x-[0.5px] after:bg-border' : ''}`}>
+                        <div className="relative z-10 w-6 h-10 flex justify-center items-center">
+                          <div className={`size-2 rounded-full ${activityType.color}`}></div>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                      {/* End Icon */}
+
+                      {/* Right Content */}
+                      <div className="grow pb-8">
+                        <Card className={`transition-all duration-300 hover:shadow-lg border-l-4 ${
+                          event.isLive ? 'border-l-success shadow-md animate-pulse' :
+                          event.isUpcoming ? 'border-l-warning' :
+                          'border-l-muted'
+                        }`}>
+                          <CardHeader className="pb-3">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <Badge className={`${activityType.color} text-white`}>
+                                    {activityType.name}
+                                  </Badge>
+                                  {event.track !== "all" && (
+                                    <Badge variant="outline" className="border-border">
+                                      <div className={`w-2 h-2 rounded-full ${track.color} mr-1`}></div>
+                                      {track.name}
+                                    </Badge>
+                                  )}
+                                  {event.isLive && (
+                                    <Badge className="bg-success text-success-foreground animate-pulse">
+                                      AO VIVO
+                                    </Badge>
+                                  )}
+                                  {event.isUpcoming && (
+                                    <Badge className="bg-warning text-warning-foreground">
+                                      EM BREVE
+                                    </Badge>
+                                  )}
+                                </div>
+                                
+                                <CardTitle className="text-xl leading-tight mb-2">
+                                  {event.title}
+                                </CardTitle>
+                                
+                                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                                  <div className="flex items-center gap-1">
+                                    <Clock className="h-4 w-4" />
+                                    {event.time} ({event.duration})
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <MapPin className="h-4 w-4" />
+                                    {event.location}
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <Users className="h-4 w-4" />
+                                    {event.registered}/{event.capacity}
+                                  </div>
+                                </div>
+
+                                {event.speaker && (
+                                  <div className="flex items-center gap-2 mt-3">
+                                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                                      <User className="h-4 w-4 text-primary" />
+                                    </div>
+                                    <div>
+                                      <div className="font-medium text-sm">{event.speaker}</div>
+                                      <div className="text-xs text-muted-foreground">{event.speakerRole}</div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="flex flex-col gap-2">
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => addToCalendar(event)}
+                                  className="whitespace-nowrap"
+                                >
+                                  <Plus className="h-4 w-4 mr-1" />
+                                  Calendário
+                                </Button>
+                                
+                                {event.description && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => toggleCard(event.id)}
+                                    className="whitespace-nowrap"
+                                  >
+                                    {isExpanded ? (
+                                      <>
+                                        <ChevronUp className="h-4 w-4 mr-1" />
+                                        Menos
+                                      </>
+                                    ) : (
+                                      <>
+                                        <ChevronDown className="h-4 w-4 mr-1" />
+                                        Detalhes
+                                      </>
+                                    )}
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </CardHeader>
+
+                          {isExpanded && (
+                            <CardContent className="pt-0 border-t border-border">
+                              <div className="space-y-4">
+                                <div>
+                                  <h4 className="font-medium text-foreground mb-2">Descrição</h4>
+                                  <p className="text-muted-foreground">{event.description}</p>
+                                </div>
+
+                                {event.objectives.length > 0 && (
+                                  <div>
+                                    <h4 className="font-medium text-foreground mb-2">Objetivos</h4>
+                                    <ul className="space-y-1">
+                                      {event.objectives.map((objective, idx) => (
+                                        <li key={idx} className="flex items-start gap-2">
+                                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                                          <span className="text-muted-foreground">{objective}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                            </CardContent>
+                          )}
+                        </Card>
+                      </div>
+                      {/* End Right Content */}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
