@@ -120,7 +120,7 @@ const Home = () => {
       </section>
 
       {/* Speakers Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-gradient-to-br from-purple-800 via-purple-900 to-purple-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
@@ -134,8 +134,8 @@ const Home = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
-            {speakers.slice(0, 3).map((speaker, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-12">
+            {speakers.map((speaker, index) => (
               <a 
                 key={index}
                 href={speaker.instagram}
@@ -158,9 +158,14 @@ const Home = () => {
                     <h3 className="font-bold text-2xl text-white">
                       {speaker.name}
                     </h3>
-                    <p className="text-gray-300 text-lg">
+                    <p className="text-purple-200 text-lg">
                       {speaker.description}
                     </p>
+                    {speaker.bio && (
+                      <p className="text-xs text-purple-300 line-clamp-3 max-w-xs mx-auto leading-relaxed mt-2">
+                        {speaker.bio}
+                      </p>
+                    )}
                   </div>
                 </div>
               </a>
