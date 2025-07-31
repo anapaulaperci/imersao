@@ -55,150 +55,142 @@ const Resumos = () => {
             body {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
               line-height: 1.6;
-              max-width: 800px;
-              margin: 0 auto;
-              padding: 40px 20px;
+              margin: 0;
+              padding: 0;
               background: #fafafa;
               color: #333;
             }
-            .header {
-              border-bottom: 1px solid #e0e0e0;
-              padding-bottom: 30px;
-              margin-bottom: 30px;
+            .dark body {
+              background: #1a1a1a;
+              color: #e5e5e5;
             }
-            .category {
-              background: #f0f0f0;
-              color: #666;
-              padding: 4px 12px;
-              border-radius: 20px;
-              font-size: 12px;
-              display: inline-block;
-              margin-bottom: 20px;
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 1rem;
             }
-            .title {
-              font-size: 42px;
-              font-weight: 700;
-              margin: 0 0 20px 0;
-              line-height: 1.2;
+            @media (min-width: 640px) {
+              .container {
+                padding: 0 1.5rem;
+              }
             }
-            .meta {
-              color: #666;
-              font-size: 14px;
-              margin-bottom: 30px;
-            }
-            .author {
-              font-weight: 500;
-            }
-            .content {
-              font-size: 18px;
-              line-height: 1.8;
-            }
-            .section {
-              margin: 40px 0;
-            }
-            .section h2 {
-              font-size: 24px;
-              font-weight: 600;
-              margin: 30px 0 15px 0;
-            }
-            .section h3 {
-              font-size: 20px;
-              font-weight: 600;
-              margin: 25px 0 10px 0;
-            }
-            .highlights {
-              background: #f8f9fa;
-              border-left: 4px solid #0066cc;
-              padding: 20px;
-              margin: 30px 0;
-              border-radius: 4px;
-            }
-            .image-container {
-              text-align: center;
-              margin: 40px 0;
-            }
-            .image-container img {
-              max-width: 100%;
-              border-radius: 8px;
-              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            @media (min-width: 1024px) {
+              .container {
+                padding: 0 2rem;
+              }
             }
           </style>
         </head>
         <body>
-          <div class="header">
-            <div class="category">${resumo.category}</div>
-            <h1 class="title">${resumo.title}</h1>
-            <div class="meta">
-              <span class="author">${resumo.author}</span> • 
-              ${resumo.duration} de leitura • 
-              ${resumo.lessons} lições
-            </div>
-          </div>
+          <!-- Hero -->
+          <div class="container">
+            <div style="padding-top: 2.5rem; padding-bottom: 3.5rem;">
+              <!-- Heading -->
+              <div style="margin-bottom: 2.5rem; max-width: 36rem; margin-left: auto; margin-right: auto; text-align: center;">
+                <h1 style="font-weight: 700; color: #1f2937; font-size: 2.25rem; margin: 0 0 1.25rem 0; line-height: 1.2;">
+                  ${resumo.title}
+                </h1>
+                <p style="margin-top: 1.25rem; font-size: 1rem; color: #374151; line-height: 1.6;">
+                  ${resumo.description}. Este material exclusivo da Imersão Posicionamento 2024 oferece insights práticos e estratégias comprovadas para transformar sua abordagem profissional.
+                </p>
+                
+                <!-- Meta info -->
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 0.875rem; color: #6b7280;">
+                  <span><strong>Instrutor:</strong> ${resumo.author}</span>
+                  <span><strong>Duração:</strong> ${resumo.duration}</span>
+                  <span><strong>Categoria:</strong> ${resumo.category}</span>
+                </div>
+              </div>
+              <!-- End Heading -->
 
-          <div class="image-container">
-            <img src="${resumo.image}" alt="${resumo.title}" />
-          </div>
-
-          <div class="content">
-            <div class="highlights">
-              <strong>Resumo:</strong> ${resumo.description}
-            </div>
-
-            <div class="section">
-              <h2>Introdução</h2>
-              <p>Este material foi cuidadosamente desenvolvido para profissionais que desejam aprofundar seus conhecimentos em posicionamento de marca e aplicar estratégias práticas em seus projetos. Ao longo desta palestra, você descobrirá insights valiosos e metodologias comprovadas que podem transformar a forma como você aborda o posicionamento digital.</p>
-            </div>
-
-            <div class="section">
-              <h2>Principais Tópicos Abordados</h2>
-              <h3>1. Fundamentos do Posicionamento</h3>
-              <p>Compreenda os pilares fundamentais que sustentam uma estratégia de posicionamento eficaz. Desde a análise do mercado até a identificação de oportunidades únicas, este módulo estabelece as bases para todo o processo estratégico.</p>
-
-              <h3>2. Análise Competitiva</h3>
-              <p>Aprenda a mapear o cenário competitivo de forma sistemática, identificando gaps de mercado e oportunidades de diferenciação. Utilize ferramentas práticas para posicionar sua marca de forma única e memorável.</p>
-
-              <h3>3. Definição de Proposta de Valor</h3>
-              <p>Desenvolva uma proposta de valor clara e convincente que ressoe com seu público-alvo. Descubra como articular os benefícios únicos que sua marca oferece de maneira que gere conexão emocional e racional.</p>
-
-              <h3>4. Implementação Prática</h3>
-              <p>Transforme conceitos em ações concretas através de frameworks testados e metodologias práticas. Aprenda a criar um plano de implementação que garanta resultados mensuráveis e sustentáveis.</p>
-            </div>
-
-            <div class="section">
-              <h2>Metodologia</h2>
-              <p>Nossa abordagem combina teoria fundamentada com aplicação prática imediata. Cada conceito apresentado vem acompanhado de exemplos reais, casos de estudo e exercícios que permitem a aplicação imediata do conhecimento adquirido.</p>
+              <div style="width: 100%; height: 16rem; background: #f3f4f6; border-radius: 0.75rem; margin-bottom: 2rem; overflow: hidden;">
+                <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;" src="${resumo.image}" alt="${resumo.title}" />
+              </div>
               
-              <p>Os participantes têm acesso a templates, checklists e ferramentas que facilitam a implementação das estratégias em seus próprios contextos profissionais, garantindo que o aprendizado se traduza em resultados tangíveis.</p>
-            </div>
-
-            <div class="section">
-              <h2>Resultados Esperados</h2>
-              <p>Ao final desta palestra, você estará equipado com:</p>
-              <ul>
-                <li>Uma compreensão profunda dos fundamentos do posicionamento estratégico</li>
-                <li>Ferramentas práticas para análise competitiva e identificação de oportunidades</li>
-                <li>Metodologias comprovadas para desenvolvimento de propostas de valor únicas</li>
-                <li>Um plano de ação personalizado para implementação em seus projetos</li>
-                <li>Acesso a recursos exclusivos e materiais complementares</li>
-              </ul>
-            </div>
-
-            <div class="section">
-              <h2>Para Quem é Este Conteúdo</h2>
-              <p>Este material é ideal para empreendedores, gestores de marketing, consultores, freelancers e qualquer profissional que deseje:</p>
-              <ul>
-                <li>Fortalecer o posicionamento de sua marca ou negócio</li>
-                <li>Desenvolver estratégias de diferenciação competitiva</li>
-                <li>Criar propostas de valor mais atrativas e eficazes</li>
-                <li>Implementar processos estruturados de posicionamento</li>
-                <li>Acelerar o crescimento através de posicionamento estratégico</li>
-              </ul>
-            </div>
-
-            <div class="highlights">
-              <strong>Nota importante:</strong> Este conteúdo faz parte da Imersão Posicionamento 2024 e representa anos de experiência prática condensados em um formato acessível e acionável. Aproveite cada insight e aplique os conhecimentos em seus projetos para maximizar os resultados.
+              @media (min-width: 768px) {
+                <div style="width: 100%; height: 24rem; background: #f3f4f6; border-radius: 0.75rem; margin-bottom: 2rem; overflow: hidden;">
+                  <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;" src="${resumo.image}" alt="${resumo.title}" />
+                </div>
+              }
             </div>
           </div>
+          <!-- End Hero -->
+
+          <!-- Title Description -->
+          <div class="container">
+            <!-- Grid -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
+              <div style="padding-right: 20%;">
+                <h2 style="font-weight: 600; font-size: 1.5rem; color: #1f2937; margin: 0 0 1.5rem 0;">
+                  Transforme teoria em resultados práticos através de estratégias comprovadas
+                </h2>
+              </div>
+              <!-- End Col -->
+
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <p style="color: #6b7280; line-height: 1.7;">
+                  Esta palestra foi desenvolvida especificamente para profissionais que buscam excelência em posicionamento de marca. Com base em mais de uma década de experiência no mercado, apresentamos metodologias testadas e frameworks práticos que você pode implementar imediatamente em seus projetos.
+                </p>
+                <p style="color: #6b7280; line-height: 1.7;">
+                  Ao longo do conteúdo, você descobrirá como identificar oportunidades únicas de posicionamento, desenvolver propostas de valor irresistíveis e criar estratégias de diferenciação que realmente funcionam no mercado atual. Cada conceito é acompanhado de exemplos reais e casos de sucesso.
+                </p>
+                <p style="color: #6b7280; line-height: 1.7;">
+                  Nossa abordagem vai além da teoria tradicional, oferecendo ferramentas práticas, templates prontos e exercícios aplicáveis que garantem a implementação eficaz das estratégias apresentadas. Ideal para empreendedores, gestores e consultores que desejam resultados mensuráveis.
+                </p>
+                
+                <!-- Seção de Destaques -->
+                <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0.5rem;">
+                  <h3 style="font-weight: 600; font-size: 1.125rem; color: #1f2937; margin: 0 0 1rem 0;">
+                    Principais tópicos abordados:
+                  </h3>
+                  <ul style="margin: 0; padding-left: 1.5rem; color: #374151;">
+                    <li style="margin-bottom: 0.5rem;">Fundamentos estratégicos do posicionamento de marca</li>
+                    <li style="margin-bottom: 0.5rem;">Análise competitiva e identificação de oportunidades</li>
+                    <li style="margin-bottom: 0.5rem;">Desenvolvimento de propostas de valor diferenciadas</li>
+                    <li style="margin-bottom: 0.5rem;">Implementação prática e mensuração de resultados</li>
+                    <li style="margin-bottom: 0.5rem;">Cases reais e aplicações no mercado atual</li>
+                  </ul>
+                </div>
+
+                <!-- Metodologia -->
+                <div style="margin-top: 2rem;">
+                  <h3 style="font-weight: 600; font-size: 1.25rem; color: #1f2937; margin: 0 0 1rem 0;">
+                    Metodologia Aplicada
+                  </h3>
+                  <p style="color: #6b7280; line-height: 1.7;">
+                    Utilizamos uma abordagem prática e orientada a resultados, combinando frameworks conceituais sólidos com aplicação imediata. Cada módulo inclui exercícios práticos, ferramentas de trabalho e templates que facilitam a implementação das estratégias em contextos reais.
+                  </p>
+                </div>
+
+                <!-- Resultados Esperados -->
+                <div style="margin-top: 2rem;">
+                  <h3 style="font-weight: 600; font-size: 1.25rem; color: #1f2937; margin: 0 0 1rem 0;">
+                    Resultados Esperados
+                  </h3>
+                  <p style="color: #6b7280; line-height: 1.7;">
+                    Ao final desta palestra, você terá adquirido conhecimentos práticos para desenvolver estratégias de posicionamento eficazes, ferramentas para análise competitiva aprofundada e a capacidade de criar propostas de valor que realmente diferenciam sua marca no mercado.
+                  </p>
+                </div>
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Grid -->
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 0.75rem; text-align: center;">
+              <p style="color: #64748b; font-size: 0.875rem; margin: 0;">
+                <strong>Material Exclusivo da Imersão Posicionamento 2024</strong><br>
+                Conteúdo desenvolvido especialmente para acelerar sua jornada profissional
+              </p>
+            </div>
+          </div>
+          <!-- End Title Description -->
+          
+          <script>
+            @media (min-width: 1024px) {
+              document.querySelector('[style*="grid-template-columns: 1fr"]').style.gridTemplateColumns = '1fr 1fr';
+              document.querySelector('[style*="gap: 1.25rem"]').style.gap = '2.5rem';
+            }
+          </script>
         </body>
         </html>
       `);

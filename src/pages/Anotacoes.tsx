@@ -1,145 +1,157 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FileText, Bold, Italic, Underline, Strikethrough, Link, List, ListOrdered, Quote, Code, Info } from "lucide-react";
+import { FileText, Plus, Search, Settings, Folder, File } from "lucide-react";
 
 const Anotacoes = () => {
+  const [selectedNote, setSelectedNote] = useState<number | null>(1);
+  const [notes, setNotes] = useState([
+    {
+      id: 1,
+      title: "Anotações da Imersão - Dia 1",
+      preview: "Principais conceitos sobre posicionamento digital...",
+      content: "# Anotações da Imersão - Dia 1\n\n## Principais conceitos sobre posicionamento digital\n\nEscreva aqui suas anotações da primeira palestra...",
+      lastModified: "2 min atrás"
+    },
+    {
+      id: 2,
+      title: "Estratégias de Branding",
+      preview: "Como construir uma marca forte no mercado...",
+      content: "# Estratégias de Branding\n\n## Como construir uma marca forte\n\nSuas anotações sobre branding...",
+      lastModified: "1 hora atrás"
+    }
+  ]);
+
+  const [currentContent, setCurrentContent] = useState(notes[0]?.content || "");
+
+  const createNewNote = () => {
+    const newNote = {
+      id: Date.now(),
+      title: "Nova Anotação",
+      preview: "Comece a escrever...",
+      content: "# Nova Anotação\n\n",
+      lastModified: "agora"
+    };
+    setNotes([newNote, ...notes]);
+    setSelectedNote(newNote.id);
+    setCurrentContent(newNote.content);
+  };
+
+  const updateNoteContent = (content: string) => {
+    setCurrentContent(content);
+    if (selectedNote) {
+      setNotes(notes.map(note => 
+        note.id === selectedNote 
+          ? { 
+              ...note, 
+              content,
+              preview: content.slice(0, 50) + "...",
+              lastModified: "agora"
+            }
+          : note
+      ));
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-        <div className="relative px-6 py-16 text-center">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-              <FileText className="mr-2 h-4 w-4" />
-              Suas Anotações
-            </div>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Anotações da <span className="text-primary">Imersão</span>
-            </h1>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Faça aqui suas anotações da imersão
-            </p>
+    <div className="h-screen bg-background flex">
+      {/* Sidebar - Lista de anotações */}
+      <div className="w-80 border-r border-border/50 bg-muted/20 flex flex-col">
+        {/* Header da sidebar */}
+        <div className="p-4 border-b border-border/50">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Anotações
+            </h2>
+            <Button size="sm" onClick={createNewNote} className="h-8 w-8 p-0">
+              <Plus className="h-4 w-4" />
+            </Button>
           </div>
+          
+          {/* Search */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <input 
+              type="text"
+              placeholder="Buscar anotações..."
+              className="w-full pl-10 pr-4 py-2 text-sm bg-background border border-border/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+          </div>
+        </div>
+
+        {/* Lista de anotações */}
+        <div className="flex-1 overflow-y-auto">
+          {notes.map((note) => (
+            <div
+              key={note.id}
+              onClick={() => {
+                setSelectedNote(note.id);
+                setCurrentContent(note.content);
+              }}
+              className={`p-4 border-b border-border/30 cursor-pointer transition-colors hover:bg-muted/40 ${
+                selectedNote === note.id ? 'bg-primary/10 border-l-4 border-l-primary' : ''
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <File className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-medium text-foreground text-sm truncate">
+                    {note.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                    {note.preview}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    {note.lastModified}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer da sidebar */}
+        <div className="p-4 border-t border-border/50">
+          <Button variant="ghost" size="sm" className="w-full justify-start text-muted-foreground">
+            <Settings className="h-4 w-4 mr-2" />
+            Configurações
+          </Button>
         </div>
       </div>
 
-      {/* Editor Section */}
-      <div className="px-6 pb-16">
-        <div className="mx-auto max-w-4xl">
-          <Card className="overflow-hidden border-0 bg-card/70 backdrop-blur-sm">
-            <CardContent className="p-8">
-              {/* Rich Text Editor */}
-              <div className="bg-background border border-border rounded-xl overflow-hidden">
-                <div id="hs-editor-tiptap">
-                  <div data-hs-editor-field className="min-h-[400px] p-6 text-foreground">
-                    <p className="text-muted-foreground">Comece a escrever suas anotações aqui...</p>
-                  </div>
+      {/* Editor principal */}
+      <div className="flex-1 flex flex-col">
+        {/* Header do editor */}
+        <div className="h-16 border-b border-border/50 flex items-center justify-between px-8">
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground">
+              {notes.find(n => n.id === selectedNote)?.lastModified}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm">
+              Exportar
+            </Button>
+            <Button size="sm">
+              Salvar
+            </Button>
+          </div>
+        </div>
 
-                  {/* Toolbar */}
-                  <div className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-t border-border">
-                    <div className="flex flex-wrap align-middle gap-1">
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-bold
-                      >
-                        <Bold className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-italic
-                      >
-                        <Italic className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-underline
-                      >
-                        <Underline className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-strike
-                      >
-                        <Strikethrough className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-link
-                      >
-                        <Link className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-ol
-                      >
-                        <ListOrdered className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-ul
-                      >
-                        <List className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-blockquote
-                      >
-                        <Quote className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="size-8 hover:bg-muted" 
-                        type="button" 
-                        data-hs-editor-code
-                      >
-                        <Code className="h-4 w-4" />
-                      </Button>
-                    </div>
-
-                    <div className="flex justify-end">
-                      <Button className="py-2 px-6 bg-primary text-primary-foreground hover:bg-primary/90">
-                        Salvar
-                      </Button>
-                    </div>
-                  </div>
-                  {/* End Toolbar */}
-                </div>
-              </div>
-
-              <div className="mt-3 flex justify-end">
-                <p className="inline-flex gap-x-2 text-xs text-muted-foreground">
-                  <Info className="h-3 w-3 mt-0.5" />
-                  Suas anotações são salvas automaticamente
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Área de escrita */}
+        <div className="flex-1 p-8 overflow-y-auto">
+          <div className="max-w-4xl mx-auto">
+            <textarea
+              value={currentContent}
+              onChange={(e) => updateNoteContent(e.target.value)}
+              placeholder="Comece a escrever suas anotações..."
+              className="w-full h-full min-h-[calc(100vh-200px)] resize-none border-none bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-lg leading-relaxed font-mono"
+              style={{
+                fontFamily: "'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace",
+                lineHeight: '1.8'
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
