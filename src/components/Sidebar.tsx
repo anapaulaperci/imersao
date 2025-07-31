@@ -48,11 +48,7 @@ const Sidebar = () => {
       id: "dashboard",
       title: "Home",
       icon: Home,
-      hasDropdown: true,
-      items: [
-        { title: "Visão Geral", path: "/" },
-        { title: "Analytics", path: "/analytics" }
-      ]
+      path: "/"
     },
     {
       id: "cronograma",
