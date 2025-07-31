@@ -190,7 +190,7 @@ const Resumos = () => {
 
                     {/* Action Buttons */}
                     <div className="flex items-center gap-3">
-                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-black hover:bg-yellow-400 transition-colors">
                         <Download className="h-4 w-4 mr-2" />
                         Baixar PDF
                       </Button>
