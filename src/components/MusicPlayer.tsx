@@ -99,14 +99,14 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed right-6 top-20 w-80 z-50">
-      <Card className="bg-gradient-to-br from-purple-900 via-purple-800 to-purple-950 border-purple-700/50 text-white shadow-2xl backdrop-blur-sm">
+    <div className="fixed right-6 top-20 w-64 z-50">
+      <Card className="border-purple-700/50 text-white shadow-2xl backdrop-blur-sm" style={{ backgroundColor: '#110A1D' }}>
         {/* Header */}
-        <div className="p-4 border-b border-purple-700/30">
+        <div className="p-3 border-b border-purple-700/30">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Music className="h-5 w-5 text-purple-300" />
-              <span className="font-medium text-sm">Study Playlist</span>
+              <Music className="h-4 w-4 text-purple-300" />
+              <span className="font-medium text-xs">Study Playlist</span>
             </div>
             <Button variant="ghost" size="sm" className="text-purple-300 hover:text-white hover:bg-purple-700/50">
               <MoreVertical className="h-4 w-4" />
@@ -115,8 +115,8 @@ const MusicPlayer = () => {
         </div>
 
         {/* Album Art */}
-        <div className="p-6">
-          <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 group">
+        <div className="p-4">
+          <div className="relative aspect-square rounded-xl overflow-hidden mb-4 group">
             <img 
               src={currentSong.cover} 
               alt={currentSong.album}
@@ -128,26 +128,26 @@ const MusicPlayer = () => {
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Button
                 onClick={togglePlay}
-                className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30"
+                className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30"
               >
                 {isPlaying ? (
-                  <Pause className="h-6 w-6 text-white" />
+                  <Pause className="h-4 w-4 text-white" />
                 ) : (
-                  <Play className="h-6 w-6 text-white ml-1" />
+                  <Play className="h-4 w-4 text-white ml-0.5" />
                 )}
               </Button>
             </div>
           </div>
 
           {/* Track Info */}
-          <div className="text-center mb-6">
-            <h3 className="font-bold text-lg text-white mb-1">{currentSong.title}</h3>
-            <p className="text-purple-300 text-sm mb-2">{currentSong.artist}</p>
+          <div className="text-center mb-4">
+            <h3 className="font-bold text-base text-white mb-1">{currentSong.title}</h3>
+            <p className="text-purple-300 text-xs mb-1">{currentSong.artist}</p>
             <p className="text-purple-400 text-xs">{currentSong.album}</p>
           </div>
 
           {/* Progress Bar */}
-          <div className="mb-6">
+          <div className="mb-4">
             <Slider
               value={[progress]}
               onValueChange={(value) => setProgress(value[0])}
@@ -162,7 +162,7 @@ const MusicPlayer = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <Button
               variant="ghost"
               size="sm"
@@ -180,17 +180,17 @@ const MusicPlayer = () => {
               onClick={prevTrack}
               className="text-purple-300 hover:text-white hover:bg-purple-700/50"
             >
-              <SkipBack className="h-5 w-5" />
+              <SkipBack className="h-4 w-4" />
             </Button>
             
             <Button
               onClick={togglePlay}
-              className="w-12 h-12 rounded-full bg-white text-purple-900 hover:bg-purple-100"
+              className="w-10 h-10 rounded-full bg-white text-purple-900 hover:bg-purple-100"
             >
               {isPlaying ? (
-                <Pause className="h-5 w-5" />
+                <Pause className="h-4 w-4" />
               ) : (
-                <Play className="h-5 w-5 ml-0.5" />
+                <Play className="h-4 w-4 ml-0.5" />
               )}
             </Button>
             
@@ -200,7 +200,7 @@ const MusicPlayer = () => {
               onClick={nextTrack}
               className="text-purple-300 hover:text-white hover:bg-purple-700/50"
             >
-              <SkipForward className="h-5 w-5" />
+              <SkipForward className="h-4 w-4" />
             </Button>
             
             <Button
@@ -259,17 +259,17 @@ const MusicPlayer = () => {
             <div
               key={track.id}
               onClick={() => setCurrentTrack(index)}
-              className={`flex items-center gap-3 p-3 cursor-pointer hover:bg-purple-700/30 transition-colors ${
+              className={`flex items-center gap-2 p-2 cursor-pointer hover:bg-purple-700/30 transition-colors ${
                 currentTrack === index ? "bg-purple-700/40" : ""
               }`}
             >
               <img 
                 src={track.cover} 
                 alt={track.album}
-                className="w-10 h-10 rounded-lg object-cover"
+                className="w-8 h-8 rounded-lg object-cover"
               />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">{track.title}</p>
+                <p className="text-xs font-medium text-white truncate">{track.title}</p>
                 <p className="text-xs text-purple-300 truncate">{track.artist}</p>
               </div>
               <span className="text-xs text-purple-400">{track.duration}</span>
