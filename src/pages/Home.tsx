@@ -174,6 +174,166 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Schedule Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Cronograma da <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Imersão</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Confira a programação completa dos dias de imersão
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ backgroundColor: '#3B0765' }}>
+              {/* Header */}
+              <div className="grid grid-cols-3 border-b border-purple-500/30">
+                <div className="p-4 text-center text-white/70 font-medium border-r border-purple-500/30">
+                  Time/Track
+                </div>
+                <div className="p-4 text-center text-orange-400 font-bold text-lg border-r border-purple-500/30">
+                  Posicionamento
+                </div>
+                <div className="p-4 text-center text-white/70 font-medium">
+                  Produção & Vendas
+                </div>
+              </div>
+
+              {/* Schedule Rows */}
+              <div className="divide-y divide-purple-500/30">
+                {/* Registration */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">8:00 - 9:00</div>
+                    <div className="text-white/70 text-sm">Registration & Breakfast</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Registration & Breakfast</div>
+                  </div>
+                </div>
+
+                {/* Opening */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">9:00 - 9:30</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Abertura: Ana Paula Perci</div>
+                  </div>
+                </div>
+
+                {/* Parallel Sessions */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">9:30 - 10:30</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="p-4 border-r border-purple-500/30">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                        alt="Ana Paula Perci" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold">Posicionamento</div>
+                        <div className="text-white/70 text-sm">Fundamentos e estratégias essenciais</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
+                        alt="Camilo Coutinho" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold">Vídeo Marketing</div>
+                        <div className="text-white/70 text-sm">Produção de conteúdo que converte</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Single Session */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">10:30 - 11:30</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Workshop: Estratégias de Vendas</div>
+                  </div>
+                </div>
+
+                {/* Networking */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">11:30 - 12:00</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="p-4 border-r border-purple-500/30 text-center">
+                    <div className="text-white font-bold">Networking: Linha Editorial</div>
+                  </div>
+                  <div className="p-4 text-center">
+                    <div className="text-white font-bold">Workshop: Análise</div>
+                  </div>
+                </div>
+
+                {/* More Parallel Sessions */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">12:00 - 13:00</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="p-4 border-r border-purple-500/30">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+                        alt="Melina Dantas" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold">Posicionamento</div>
+                        <div className="text-white/70 text-sm">Casos práticos e aplicações</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1581090464777-f3220bbe18b8" 
+                        alt="Sabrina" 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div>
+                        <div className="text-white font-bold">Estratégias</div>
+                        <div className="text-white/70 text-sm">Implementação e resultados</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Break */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">13:00 - 14:00</div>
+                    <div className="text-white/70 text-sm">Time/Track</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Intervalo & Networking</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-purple-50 to-purple-100">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
