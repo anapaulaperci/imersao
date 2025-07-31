@@ -120,19 +120,22 @@ const Home = () => {
       </section>
 
       {/* Speakers Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-              Nossos <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Palestrantes</span>
+          <div className="flex justify-between items-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              Speakers
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Conheça os especialistas que compartilharão seus conhecimentos na imersão
-            </p>
+            <Button 
+              variant="outline" 
+              className="bg-red-500 hover:bg-red-600 text-white border-red-500 hover:border-red-600 px-6 py-2"
+            >
+              See all speakers
+            </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-            {speakers.map((speaker, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+            {speakers.slice(0, 3).map((speaker, index) => (
               <a 
                 key={index}
                 href={speaker.instagram}
@@ -140,34 +143,24 @@ const Home = () => {
                 rel="noopener noreferrer"
                 className="group cursor-pointer text-center"
               >
-                <div className="transition-all duration-300 hover:-translate-y-2">
-                  <div className="relative mb-6">
-                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <div className="transition-all duration-300">
+                  <div className="relative mb-8">
+                    <div className="w-48 h-48 mx-auto rounded-full overflow-hidden">
                       <img 
                         src={speaker.image}
                         alt={speaker.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                    </div>
-                    <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full shadow-lg">
-                        <Instagram className="h-4 w-4" />
-                      </div>
                     </div>
                   </div>
                   
-                  <div className="space-y-3">
-                    <h3 className="font-bold text-xl text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-2xl text-white">
                       {speaker.name}
                     </h3>
-                    <p className="text-sm text-gray-600 font-medium">
+                    <p className="text-gray-300 text-lg">
                       {speaker.description}
                     </p>
-                    {speaker.bio && (
-                      <p className="text-xs text-gray-500 line-clamp-3 max-w-xs mx-auto leading-relaxed">
-                        {speaker.bio}
-                      </p>
-                    )}
                   </div>
                 </div>
               </a>
