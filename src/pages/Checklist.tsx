@@ -27,6 +27,8 @@ const Checklist = () => {
   });
 
   const [taskThemes, setTaskThemes] = useState<Record<string, string>>({});
+  const [taskPriorities, setTaskPriorities] = useState<Record<string, string>>({});
+  const [taskDates, setTaskDates] = useState<Record<string, string>>({});
 
   const themeOptions = [
     "Posicionamento",
@@ -34,6 +36,12 @@ const Checklist = () => {
     "Vendas",
     "Produção de Conteúdo",
     "Análise"
+  ];
+
+  const priorityOptions = [
+    { value: "alta", label: "Alta", color: "bg-red-100 text-red-800 border-red-200" },
+    { value: "média", label: "Média", color: "bg-yellow-100 text-yellow-800 border-yellow-200" },
+    { value: "baixa", label: "Baixa", color: "bg-green-100 text-green-800 border-green-200" }
   ];
 
   const sections = [
@@ -99,6 +107,20 @@ const Checklist = () => {
     setTaskThemes(prev => ({
       ...prev,
       [itemId]: theme
+    }));
+  };
+
+  const handlePriorityChange = (itemId: string, priority: string) => {
+    setTaskPriorities(prev => ({
+      ...prev,
+      [itemId]: priority
+    }));
+  };
+
+  const handleDateChange = (itemId: string, date: string) => {
+    setTaskDates(prev => ({
+      ...prev,
+      [itemId]: date
     }));
   };
 
@@ -249,10 +271,10 @@ const Checklist = () => {
                           <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${themeColor}`} />
                           
                           <div className="p-4 pl-6">
-                            {/* Grid layout com colunas para tarefa, tema, prioridade e status */}
-                            <div className="grid grid-cols-12 gap-4 items-center">
-                              {/* Checkbox e Tarefa - 6 colunas */}
-                              <div className="col-span-6 flex items-center gap-3">
+                            {/* Grid layout com todas as colunas */}
+                            <div className="grid grid-cols-12 gap-3 items-center">
+                              {/* Checkbox e Tarefa - 4 colunas */}
+                              <div className="col-span-4 flex items-center gap-3">
                                 <Checkbox
                                   id={item.id}
                                   checked={checkedItems[item.id] || false}
@@ -261,7 +283,7 @@ const Checklist = () => {
                                 />
                                 <label 
                                   htmlFor={item.id}
-                                  className={`font-medium cursor-pointer transition-all duration-200 ${
+                                  className={`font-medium cursor-pointer transition-all duration-200 text-sm ${
                                     checkedItems[item.id] 
                                       ? 'text-gray-400 line-through' 
                                       : 'text-gray-800 hover:text-blue-600'
@@ -271,29 +293,29 @@ const Checklist = () => {
                                 </label>
                               </div>
                               
-                              {/* Tema - 3 colunas */}
-                              <div className="col-span-3">
+                              {/* Tema - 2 colunas */}
+                              <div className="col-span-2">
                                 <Select 
                                   value={taskThemes[item.id] || ""} 
                                   onValueChange={(value) => handleThemeChange(item.id, value)}
                                 >
                                   <SelectTrigger 
-                                    className={`h-9 text-sm border-gray-200 hover:border-gray-300 transition-colors ${
+                                    className={`h-8 text-xs border-gray-200 hover:border-gray-300 transition-colors ${
                                       selectedTheme ? 'bg-gray-50' : 'bg-white'
                                     }`}
                                   >
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-1">
                                       {selectedTheme && (
-                                        <div className={`w-3 h-3 rounded-full ${themeColor}`} />
+                                        <div className={`w-2 h-2 rounded-full ${themeColor}`} />
                                       )}
                                       <SelectValue placeholder="Tema" />
                                     </div>
                                   </SelectTrigger>
                                   <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
                                     {themeOptions.map((theme) => (
-                                      <SelectItem key={theme} value={theme} className="text-sm hover:bg-gray-50">
+                                      <SelectItem key={theme} value={theme} className="text-xs hover:bg-gray-50">
                                         <div className="flex items-center gap-2">
-                                          <div className={`w-3 h-3 rounded-full ${getThemeColor(theme)}`} />
+                                          <div className={`w-2 h-2 rounded-full ${getThemeColor(theme)}`} />
                                           {theme}
                                         </div>
                                       </SelectItem>
@@ -302,25 +324,47 @@ const Checklist = () => {
                                 </Select>
                               </div>
                               
-                              {/* Prioridade - 2 colunas */}
-                              <div className="col-span-2 flex justify-center">
-                                <Badge 
-                                  className={`${getPriorityColor(item.priority)} font-medium px-2 py-1 text-xs rounded-full`}
+                              {/* Prioridade Selecionável - 2 colunas */}
+                              <div className="col-span-2">
+                                <Select 
+                                  value={taskPriorities[item.id] || item.priority} 
+                                  onValueChange={(value) => handlePriorityChange(item.id, value)}
                                 >
-                                  {item.priority}
-                                </Badge>
+                                  <SelectTrigger className="h-8 text-xs border-gray-200 hover:border-gray-300 transition-colors bg-white">
+                                    <SelectValue placeholder="Prioridade" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                                    {priorityOptions.map((priority) => (
+                                      <SelectItem key={priority.value} value={priority.value} className="text-xs hover:bg-gray-50">
+                                        <div className="flex items-center gap-2">
+                                          <div className={`w-2 h-2 rounded-full ${
+                                            priority.value === 'alta' ? 'bg-red-500' : 
+                                            priority.value === 'média' ? 'bg-yellow-500' : 'bg-green-500'
+                                          }`} />
+                                          {priority.label}
+                                        </div>
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              
+                              {/* Data de Conclusão - 2 colunas */}
+                              <div className="col-span-2">
+                                <Input 
+                                  type="date"
+                                  value={taskDates[item.id] || ""}
+                                  onChange={(e) => handleDateChange(item.id, e.target.value)}
+                                  className="h-8 text-xs border-gray-200 hover:border-gray-300 transition-colors bg-white"
+                                />
                               </div>
                               
                               {/* Status - 1 coluna */}
-                              <div className="col-span-1 flex justify-end">
+                              <div className="col-span-1 flex justify-center">
                                 {checkedItems[item.id] ? (
-                                  <div className="flex items-center gap-1 text-green-600 text-xs">
-                                    <div className="w-3 h-3 bg-green-500 rounded-full" />
-                                  </div>
+                                  <div className="w-3 h-3 bg-green-500 rounded-full" />
                                 ) : (
-                                  <div className="flex items-center gap-1 text-gray-400 text-xs">
-                                    <div className="w-3 h-3 bg-gray-300 rounded-full" />
-                                  </div>
+                                  <div className="w-3 h-3 bg-gray-300 rounded-full" />
                                 )}
                               </div>
                             </div>
