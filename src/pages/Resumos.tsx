@@ -173,7 +173,10 @@ const Resumos = () => {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">
+                  <h2 
+                    className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => openPalestraContent(resumo)}
+                  >
                     {resumo.title}
                   </h2>
 
