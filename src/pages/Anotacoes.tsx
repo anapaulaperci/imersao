@@ -56,7 +56,7 @@ const Anotacoes = () => {
   return (
     <div className="h-screen bg-background flex">
       {/* Sidebar - Lista de anotações */}
-      <div className="w-80 border-r border-border/50 bg-muted/20 flex flex-col">
+      <div className="w-64 border-r border-border/50 bg-muted/20 flex flex-col">
         {/* Header da sidebar */}
         <div className="p-4 border-b border-border/50">
           <div className="flex items-center justify-between mb-4">
