@@ -13,6 +13,7 @@ import Perfil from "./pages/Perfil";
 import IA from "./pages/IA";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Anotacoes from "./pages/Anotacoes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => {
               <Route path="perfil" element={<Perfil />} />
               <Route path="ia" element={<IA />} />
               <Route path="admin" element={<Admin />} />
+              <Route path="anotacoes" element={<Anotacoes />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

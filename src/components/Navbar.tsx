@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Cronograma", path: "/cronograma" },
     { name: "Resumos", path: "/resumos" },
+    { name: "Anotações", path: "/anotacoes" },
     { name: "Checklist", path: "/checklist" },
     { name: "Meu Perfil", path: "/perfil" },
   ];
@@ -20,7 +21,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card border-b border-border shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 gap-8">"
+        <div className="flex justify-between items-center h-16 gap-8">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary to-primary-glow rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300">
