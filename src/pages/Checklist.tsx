@@ -148,7 +148,7 @@ const Checklist = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
@@ -231,9 +231,9 @@ const Checklist = () => {
                   </div>
                 </CardHeader>
                 
-                {/* Section Items - Monday.com Style */}
+                {/* Section Items - Monday.com Style com Colunas */}
                 <CardContent className="pt-0">
-                  <div className="grid gap-3">
+                  <div className="grid gap-2">
                     {section.items.map((item) => {
                       const selectedTheme = taskThemes[item.id];
                       const themeColor = selectedTheme ? getThemeColor(selectedTheme) : "bg-gray-200";
@@ -249,18 +249,19 @@ const Checklist = () => {
                           <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${themeColor}`} />
                           
                           <div className="p-4 pl-6">
-                            {/* Main task row */}
-                            <div className="flex items-center gap-3 mb-3">
-                              <Checkbox
-                                id={item.id}
-                                checked={checkedItems[item.id] || false}
-                                onCheckedChange={() => handleItemCheck(item.id)}
-                                className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500 hover:border-green-400 transition-colors"
-                              />
-                              <div className="flex-1">
+                            {/* Grid layout com colunas para tarefa, tema, prioridade e status */}
+                            <div className="grid grid-cols-12 gap-4 items-center">
+                              {/* Checkbox e Tarefa - 6 colunas */}
+                              <div className="col-span-6 flex items-center gap-3">
+                                <Checkbox
+                                  id={item.id}
+                                  checked={checkedItems[item.id] || false}
+                                  onCheckedChange={() => handleItemCheck(item.id)}
+                                  className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500 hover:border-green-400 transition-colors shrink-0"
+                                />
                                 <label 
                                   htmlFor={item.id}
-                                  className={`block font-medium cursor-pointer transition-all duration-200 ${
+                                  className={`font-medium cursor-pointer transition-all duration-200 ${
                                     checkedItems[item.id] 
                                       ? 'text-gray-400 line-through' 
                                       : 'text-gray-800 hover:text-blue-600'
@@ -269,22 +270,15 @@ const Checklist = () => {
                                   {item.task}
                                 </label>
                               </div>
-                              <Badge 
-                                className={`${getPriorityColor(item.priority)} font-medium px-2 py-1 text-xs rounded-full`}
-                              >
-                                {item.priority}
-                              </Badge>
-                            </div>
-                            
-                            {/* Bottom row with theme selector */}
-                            <div className="flex items-center gap-3">
-                              <div className="flex-1">
+                              
+                              {/* Tema - 3 colunas */}
+                              <div className="col-span-3">
                                 <Select 
                                   value={taskThemes[item.id] || ""} 
                                   onValueChange={(value) => handleThemeChange(item.id, value)}
                                 >
                                   <SelectTrigger 
-                                    className={`h-8 text-xs border-gray-200 hover:border-gray-300 transition-colors ${
+                                    className={`h-9 text-sm border-gray-200 hover:border-gray-300 transition-colors ${
                                       selectedTheme ? 'bg-gray-50' : 'bg-white'
                                     }`}
                                   >
@@ -292,7 +286,7 @@ const Checklist = () => {
                                       {selectedTheme && (
                                         <div className={`w-3 h-3 rounded-full ${themeColor}`} />
                                       )}
-                                      <SelectValue placeholder="Selecionar tema" />
+                                      <SelectValue placeholder="Tema" />
                                     </div>
                                   </SelectTrigger>
                                   <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
@@ -308,17 +302,24 @@ const Checklist = () => {
                                 </Select>
                               </div>
                               
-                              {/* Status indicator */}
-                              <div className="flex items-center gap-2">
+                              {/* Prioridade - 2 colunas */}
+                              <div className="col-span-2 flex justify-center">
+                                <Badge 
+                                  className={`${getPriorityColor(item.priority)} font-medium px-2 py-1 text-xs rounded-full`}
+                                >
+                                  {item.priority}
+                                </Badge>
+                              </div>
+                              
+                              {/* Status - 1 coluna */}
+                              <div className="col-span-1 flex justify-end">
                                 {checkedItems[item.id] ? (
                                   <div className="flex items-center gap-1 text-green-600 text-xs">
-                                    <div className="w-2 h-2 bg-green-500 rounded-full" />
-                                    Concluído
+                                    <div className="w-3 h-3 bg-green-500 rounded-full" />
                                   </div>
                                 ) : (
                                   <div className="flex items-center gap-1 text-gray-400 text-xs">
-                                    <div className="w-2 h-2 bg-gray-300 rounded-full" />
-                                    Pendente
+                                    <div className="w-3 h-3 bg-gray-300 rounded-full" />
                                   </div>
                                 )}
                               </div>
