@@ -6,7 +6,6 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Cronograma from "./pages/Cronograma";
 import Resumos from "./pages/Resumos";
 import Palestra from "./pages/Palestra";
 import Checklist from "./pages/Checklist";
@@ -31,7 +30,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="cronograma" element={<Cronograma />} />
+              
               <Route path="resumos" element={<Resumos />} />
               <Route path="palestra/:id" element={<Palestra />} />
               <Route path="checklist" element={<Checklist />} />

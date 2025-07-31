@@ -51,12 +51,6 @@ const Sidebar = () => {
       path: "/"
     },
     {
-      id: "cronograma",
-      title: "Cronograma",
-      icon: Calendar,
-      path: "/cronograma"
-    },
-    {
       id: "resumos",
       title: "Material de Estudo",
       icon: FileText,
