@@ -877,6 +877,7 @@ export type Database = {
           created_at: string
           display_name: string | null
           id: string
+          role: string
           updated_at: string
           user_id: string
         }
@@ -885,6 +886,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          role?: string
           updated_at?: string
           user_id: string
         }
@@ -893,6 +895,7 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+          role?: string
           updated_at?: string
           user_id?: string
         }
@@ -1601,6 +1604,10 @@ export type Database = {
       }
       ensure_admin_setup: {
         Args: { user_email: string }
+        Returns: string
+      }
+      get_current_user_role: {
+        Args: Record<PropertyKey, never>
         Returns: string
       }
       has_permission: {
