@@ -23,7 +23,7 @@ const Sidebar = () => {
   const navItems = [
     {
       id: "dashboard",
-      title: "Dashboard",
+      title: "Home",
       icon: Home,
       hasDropdown: true,
       items: [
@@ -39,15 +39,21 @@ const Sidebar = () => {
     },
     {
       id: "resumos",
-      title: "Resumos",
+      title: "Material de Estudo",
       icon: FileText,
       path: "/resumos"
     },
     {
       id: "checklist",
-      title: "Checklist",
+      title: "Plano de Implementação",
       icon: CheckSquare,
       path: "/checklist"
+    },
+    {
+      id: "ia",
+      title: "IA Assistant",
+      icon: BookOpen,
+      path: "/ia"
     },
     {
       id: "perfil",
@@ -167,28 +173,6 @@ const Sidebar = () => {
                   );
                 })}
 
-                {/* Upgrade Link */}
-                <li>
-                  <button className="flex gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 focus:outline-hidden focus:bg-white/10 w-full text-left">
-                    <ArrowUp className="shrink-0 mt-0.5 size-4 text-teal-300" />
-                    <span className="bg-clip-text bg-gradient-to-r from-teal-300 to-fuchsia-300 text-transparent">
-                      Upgrade para PRO
-                    </span>
-                  </button>
-                </li>
-
-                {/* What's New */}
-                <li>
-                  <button className="flex gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 focus:outline-hidden focus:bg-white/10 w-full text-left">
-                    <Bell className="shrink-0 mt-0.5 size-4" />
-                    Notificações
-                    <div className="ms-auto">
-                      <span className="inline-flex items-center gap-1.5 py-px px-1.5 rounded-lg text-[10px] leading-4 font-medium border border-white/10 text-white/80">
-                        v1.0
-                      </span>
-                    </div>
-                  </button>
-                </li>
               </ul>
             </nav>
           </div>

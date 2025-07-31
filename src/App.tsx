@@ -8,6 +8,7 @@ import Cronograma from "./pages/Cronograma";
 import Resumos from "./pages/Resumos";
 import Checklist from "./pages/Checklist";
 import Perfil from "./pages/Perfil";
+import IA from "./pages/IA";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="resumos" element={<Resumos />} />
             <Route path="checklist" element={<Checklist />} />
             <Route path="perfil" element={<Perfil />} />
+            <Route path="ia" element={<IA />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
