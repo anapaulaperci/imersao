@@ -1,39 +1,28 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { 
   Home, 
   Calendar, 
   FileText, 
   CheckSquare, 
   User, 
-  Menu, 
-  X,
   BookOpen,
   ChevronDown,
-  Users,
-  Settings,
   Bell,
-  ArrowUp
+  ArrowUp,
+  Menu,
+  X
 } from "lucide-react";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
   const location = useLocation();
-
-  const toggleDropdown = (id: string) => {
-    setOpenDropdowns(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
 
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
     {
-      id: "home",
+      id: "dashboard",
       title: "Dashboard",
       icon: Home,
       hasDropdown: true,
@@ -74,97 +63,88 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 inset-x-0 flex justify-between items-center w-full py-2.5 px-4 bg-card border-b border-border z-50">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-7 h-9"
-        >
-          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </Button>
+      {/* ========== HEADER ========== */}
+      <header className="lg:hidden lg:ms-65 fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
+        <div className="flex justify-between basis-full items-center w-full py-2.5 px-2 sm:px-5">
+          {/* Sidebar Toggle */}
+          <button 
+            type="button" 
+            className="w-7 h-9.5 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" 
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <Menu className="shrink-0 size-4" />
+          </button>
+
+          {/* Project Name */}
+          <div className="inline-flex items-center text-start font-semibold text-gray-800 dark:text-white">
+            <span className="max-w-16 truncate">Imersão Posicionamento</span>
+          </div>
+        </div>
       </header>
 
-      {/* Sidebar Overlay for Mobile */}
-      {isOpen && (
-        <div 
-          className="lg:hidden fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Main Sidebar */}
+      {/* ========== MAIN SIDEBAR ========== */}
       <aside 
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 lg:w-16 
-          bg-primary border-r border-border
+          fixed inset-y-0 start-0 z-60
+          w-65 h-full
+          bg-purple-950
+          lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
           transition-all duration-300 transform
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          lg:translate-x-0
+          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
-        <div className="flex flex-col h-full py-3">
-          {/* Logo Header */}
-          <header className="px-8 h-12 lg:flex lg:flex-col lg:items-center">
-            {/* Desktop Logo - Collapsed */}
-            <div className="hidden lg:block">
-              <Link 
-                to="/" 
-                className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg hover:bg-white/20 transition-colors duration-200"
-              >
-                <BookOpen className="h-6 w-6 text-white" />
-              </Link>
-            </div>
-
-            {/* Mobile Logo - Expanded */}
-            <div className="lg:hidden">
-              <Link to="/" className="flex items-center space-x-3">
-                <div className="flex items-center justify-center w-8 h-8 bg-white/10 rounded-lg">
-                  <BookOpen className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-lg font-bold text-white">
-                  Imersão Posicionamento
-                </span>
-              </Link>
-            </div>
+        <div className="flex flex-col h-full max-h-full py-3">
+          <header className="h-11.5 px-8">
+            {/* Logo */}
+            <Link 
+              className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" 
+              to="/"
+            >
+              <div className="flex items-center space-x-3">
+                <BookOpen className="h-8 w-8 text-white" />
+                <span className="text-white font-bold text-lg">Posicionamento</span>
+              </div>
+            </Link>
           </header>
 
-          {/* Navigation Content */}
-          <div className="flex-1 overflow-y-hidden px-2 lg:px-0">
-            {/* Desktop Navigation - Collapsed Icons */}
-            <nav className="mt-6 hidden lg:block">
-              <ul className="text-center space-y-2">
+          {/* Content */}
+          <div className="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+            {/* Nav */}
+            <nav className="p-5 pt-0 w-full flex flex-col flex-wrap">
+              <ul className="space-y-1.5">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   
                   if (item.hasDropdown) {
                     return (
-                      <li key={item.id} className="relative group">
-                        <div className="relative">
-                          <button className="flex justify-center items-center w-10 h-10 text-white/80 rounded-full hover:bg-white/10 transition-colors duration-200 mx-auto">
-                            <Icon className="h-5 w-5" />
-                          </button>
-                          
-                          {/* Dropdown Menu */}
-                          <div className="absolute left-14 top-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <div className="bg-card border border-border rounded-lg shadow-lg w-48 py-1">
-                              {item.items?.map((subItem) => (
+                      <li className="hs-accordion" key={item.id}>
+                        <button 
+                          type="button" 
+                          className="hs-accordion-toggle hs-accordion-active:bg-white/10 w-full text-start flex gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-white/10"
+                        >
+                          <Icon className="shrink-0 mt-0.5 size-4" />
+                          {item.title}
+                          <ChevronDown className="hs-accordion-active:-rotate-180 shrink-0 mt-1 size-3.5 ms-auto transition" />
+                        </button>
+
+                        <div className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                          <ul className="ps-7 mt-1.5 space-y-1.5 relative before:absolute before:top-0 before:start-[19px] before:w-0.5 before:h-full before:bg-white/10">
+                            {item.items?.map((subItem) => (
+                              <li key={subItem.path}>
                                 <Link
-                                  key={subItem.path}
-                                  to={subItem.path}
-                                  className={`block px-3 py-2 text-sm transition-colors duration-200 ${
+                                  className={`flex gap-x-4 py-2 px-3 text-sm rounded-lg focus:outline-hidden transition-colors ${
                                     isActive(subItem.path)
-                                      ? 'bg-primary text-primary-foreground'
-                                      : 'text-foreground hover:bg-muted'
+                                      ? 'bg-white/20 text-white'
+                                      : 'text-white/80 hover:bg-white/10'
                                   }`}
+                                  to={subItem.path}
                                   onClick={() => setIsOpen(false)}
                                 >
                                   {subItem.title}
                                 </Link>
-                              ))}
-                            </div>
-                          </div>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </li>
                     );
@@ -173,131 +153,75 @@ const Sidebar = () => {
                   return (
                     <li key={item.id}>
                       <Link
-                        to={item.path!}
-                        className={`flex justify-center items-center w-10 h-10 rounded-full transition-colors duration-200 mx-auto ${
+                        className={`flex gap-x-3 py-2 px-3 text-sm rounded-lg focus:outline-hidden transition-colors ${
                           isActive(item.path!)
                             ? 'bg-white/20 text-white'
                             : 'text-white/80 hover:bg-white/10'
                         }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </Link>
-                    </li>
-                  );
-                })}
-
-                {/* Additional Desktop Icons */}
-                <li>
-                  <button className="flex justify-center items-center w-10 h-10 text-white/80 rounded-full hover:bg-white/10 transition-colors duration-200 mx-auto">
-                    <Bell className="h-5 w-5" />
-                  </button>
-                </li>
-                <li>
-                  <button className="flex justify-center items-center w-10 h-10 text-white/80 rounded-full hover:bg-white/10 transition-colors duration-200 mx-auto">
-                    <ArrowUp className="h-5 w-5" />
-                  </button>
-                </li>
-              </ul>
-            </nav>
-
-            {/* Mobile Navigation - Expanded */}
-            <nav className="lg:hidden p-3 pt-0 w-full">
-              <ul className="space-y-1">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  
-                  if (item.hasDropdown) {
-                    return (
-                      <li key={item.id}>
-                        <button
-                          onClick={() => toggleDropdown(item.id)}
-                          className={`w-full text-left flex items-center gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 transition-colors duration-200 ${
-                            openDropdowns[item.id] ? 'bg-white/10' : ''
-                          }`}
-                        >
-                          <Icon className="h-4 w-4 flex-shrink-0" />
-                          {item.title}
-                          <ChevronDown 
-                            className={`h-4 w-4 ml-auto transition-transform duration-200 ${
-                              openDropdowns[item.id] ? 'rotate-180' : ''
-                            }`} 
-                          />
-                        </button>
-
-                        {openDropdowns[item.id] && (
-                          <ul className="pl-7 mt-1 space-y-1 border-l border-white/10 ml-3">
-                            {item.items?.map((subItem) => (
-                              <li key={subItem.path}>
-                                <Link
-                                  to={subItem.path}
-                                  className={`block py-2 px-3 text-sm rounded-lg transition-colors duration-200 ${
-                                    isActive(subItem.path)
-                                      ? 'bg-white/20 text-white'
-                                      : 'text-white/80 hover:bg-white/10'
-                                  }`}
-                                  onClick={() => setIsOpen(false)}
-                                >
-                                  {subItem.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    );
-                  }
-
-                  return (
-                    <li key={item.id}>
-                      <Link
                         to={item.path!}
-                        className={`flex items-center gap-x-3 py-2 px-3 text-sm rounded-lg transition-colors duration-200 ${
-                          isActive(item.path!)
-                            ? 'bg-white/20 text-white'
-                            : 'text-white/80 hover:bg-white/10'
-                        }`}
                         onClick={() => setIsOpen(false)}
                       >
-                        <Icon className="h-4 w-4 flex-shrink-0" />
+                        <Icon className="shrink-0 mt-0.5 size-4" />
                         {item.title}
                       </Link>
                     </li>
                   );
                 })}
 
-                {/* Additional Mobile Links */}
+                {/* Upgrade Link */}
                 <li>
-                  <button className="flex items-center gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 transition-colors duration-200 w-full text-left">
-                    <Bell className="h-4 w-4 flex-shrink-0" />
-                    Notificações
-                    <span className="ml-auto px-1.5 py-0.5 text-[10px] bg-white/10 rounded text-white/80">
-                      v1.0
+                  <button className="flex gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 focus:outline-hidden focus:bg-white/10 w-full text-left">
+                    <ArrowUp className="shrink-0 mt-0.5 size-4 text-teal-300" />
+                    <span className="bg-clip-text bg-gradient-to-r from-teal-300 to-fuchsia-300 text-transparent">
+                      Upgrade para PRO
                     </span>
                   </button>
                 </li>
+
+                {/* What's New */}
                 <li>
-                  <button className="flex items-center gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 transition-colors duration-200 w-full text-left">
-                    <ArrowUp className="h-4 w-4 flex-shrink-0 text-accent" />
-                    <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                      Upgrade para PRO
-                    </span>
+                  <button className="flex gap-x-3 py-2 px-3 text-sm text-white/80 rounded-lg hover:bg-white/10 focus:outline-hidden focus:bg-white/10 w-full text-left">
+                    <Bell className="shrink-0 mt-0.5 size-4" />
+                    Notificações
+                    <div className="ms-auto">
+                      <span className="inline-flex items-center gap-1.5 py-px px-1.5 rounded-lg text-[10px] leading-4 font-medium border border-white/10 text-white/80">
+                        v1.0
+                      </span>
+                    </div>
                   </button>
                 </li>
               </ul>
             </nav>
           </div>
 
+          {/* Footer */}
+          <footer className="hidden lg:block sticky bottom-0 inset-x-0 border-t border-white/10">
+            <div className="px-7">
+              <div className="flex">
+                <button className="group w-full inline-flex items-center py-3 text-start text-white align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden">
+                  <BookOpen className="size-8 shrink-0 text-white/80" />
+                  <span className="block ms-3">
+                    <span className="block text-sm font-medium text-white group-hover:text-white/70 group-focus-hover:text-white/70">
+                      Posicionamento
+                    </span>
+                    <span className="block text-xs text-white/70">
+                      app.posicionamento.com
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </footer>
+
           {/* Close Button for Mobile */}
-          <div className="lg:hidden absolute top-3 -right-3 z-10">
-            <Button
-              variant="ghost"
-              size="sm"
+          <div className="lg:hidden absolute top-3 -end-3 z-10">
+            <button 
+              type="button" 
+              className="w-6 h-7 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-white/10 bg-purple-950 text-gray-400 hover:text-gray-300 focus:outline-hidden focus:text-gray-300 disabled:opacity-50 disabled:pointer-events-none" 
               onClick={() => setIsOpen(false)}
-              className="w-6 h-7 bg-primary border border-white/10 text-white/80 hover:text-white hover:bg-white/10"
             >
-              <X className="h-4 w-4" />
-            </Button>
+              <X className="shrink-0 w-4 h-4" />
+            </button>
           </div>
         </div>
       </aside>
