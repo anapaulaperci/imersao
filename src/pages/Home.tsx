@@ -130,7 +130,7 @@ const Home = () => {
               variant="outline" 
               className="bg-red-500 hover:bg-red-600 text-white border-red-500 hover:border-red-600 px-6 py-2"
             >
-              See all speakers
+              speakers
             </Button>
           </div>
 
