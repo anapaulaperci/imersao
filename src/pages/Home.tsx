@@ -43,42 +43,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen relative">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary-glow to-accent py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-20"></div>
-        
-        <div className="max-w-7xl mx-auto relative">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
-                <BookOpen className="h-16 w-16 text-white" />
-              </div>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
-              Imersão Posicionamento
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto animate-slide-in">
-              Domine as estratégias de posicionamento de marca com nosso programa completo de estudos
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Link to="/auth">
-                <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300">
-                  Fazer Login
-                </Button>
-              </Link>
-              
-              <Link to="/cronograma">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 py-4 bg-white/10 border-white/20 text-white hover:bg-white/20 shadow-lg">
-                  Ver Cronograma
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Hero */}
       <div className="bg-background">
