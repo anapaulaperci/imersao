@@ -237,46 +237,6 @@ const Cronograma = () => {
             </Button>
           </div>
 
-          {/* Day Filter */}
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm font-medium text-muted-foreground flex items-center">
-              Dias:
-            </span>
-            {days.map((day) => (
-              <button
-                key={day.id}
-                onClick={() => setSelectedDay(day.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  selectedDay === day.id
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {day.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Track Filter */}
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm font-medium text-muted-foreground flex items-center">
-              Trilhas:
-            </span>
-            {tracks.map((track) => (
-              <button
-                key={track.id}
-                onClick={() => setSelectedTrack(track.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                  selectedTrack === track.id
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                <div className={`w-2 h-2 rounded-full ${track.color}`}></div>
-                {track.name}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Timeline */}
