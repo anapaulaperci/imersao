@@ -7,7 +7,7 @@ const Resumos = () => {
   const resumos = [
     {
       id: 1,
-      title: "Estratégias de Posicionamento Digital",
+      title: "Palestra 01",
       description: "Principais conceitos sobre como posicionar sua marca no ambiente digital e construir uma presença sólida online.",
       author: "Ana Paula Perci",
       duration: "15 min",
@@ -19,7 +19,7 @@ const Resumos = () => {
     },
     {
       id: 2,
-      title: "Análise de Concorrência",
+      title: "Palestra 02",
       description: "Como identificar e analisar seus concorrentes para criar vantagens competitivas sustentáveis.",
       author: "Ana Paula Perci", 
       duration: "20 min",
@@ -31,7 +31,7 @@ const Resumos = () => {
     },
     {
       id: 3,
-      title: "Definindo seu Público-Alvo",
+      title: "Palestra 03",
       description: "Técnicas avançadas para identificar, segmentar e compreender profundamente seu público ideal.",
       author: "Ana Paula Perci",
       duration: "18 min", 
@@ -43,7 +43,7 @@ const Resumos = () => {
     },
     {
       id: 4,
-      title: "Construção de Proposta de Valor",
+      title: "Palestra 04",
       description: "Como criar uma proposta de valor única que diferencia seu negócio no mercado competitivo.",
       author: "Ana Paula Perci",
       duration: "25 min",
@@ -55,7 +55,7 @@ const Resumos = () => {
     },
     {
       id: 5,
-      title: "Brand Storytelling",
+      title: "Palestra 05",
       description: "Aprenda a contar a história da sua marca de forma envolvente e memorável para seu público.",
       author: "Ana Paula Perci",
       duration: "22 min",
@@ -67,7 +67,7 @@ const Resumos = () => {
     },
     {
       id: 6,
-      title: "Métricas de Posicionamento",
+      title: "Palestra 06",
       description: "Como medir e acompanhar o sucesso das suas estratégias de posicionamento de marca.",
       author: "Ana Paula Perci",
       duration: "30 min",
@@ -75,6 +75,18 @@ const Resumos = () => {
       image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=400&h=200&fit=crop&crop=center",
       rating: 4.8,
       lessons: 18,
+      isNew: true
+    },
+    {
+      id: 7,
+      title: "Palestra 07",
+      description: "Estratégias avançadas para consolidar e expandir seu posicionamento no mercado digital.",
+      author: "Ana Paula Perci",
+      duration: "28 min",
+      category: "Estratégia",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop&crop=center",
+      rating: 4.9,
+      lessons: 16,
       isNew: true
     }
   ];

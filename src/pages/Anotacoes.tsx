@@ -1,100 +1,147 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PenTool, Paperclip, Smile, Mic, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FileText, Bold, Italic, Underline, Strikethrough, Link, List, ListOrdered, Quote, Code, Info } from "lucide-react";
 
 const Anotacoes = () => {
-  const [newNote, setNewNote] = useState("");
-
-  const handleSendNote = () => {
-    if (newNote.trim()) {
-      // Aqui você pode adicionar a lógica para salvar a nota
-      console.log("Nova nota:", newNote);
-      setNewNote("");
-    }
-  };
-
   return (
-    <div className="p-2 sm:p-5 sm:py-0 md:pt-5 space-y-5">
-      <Card className="min-h-[calc(100vh-120px)]">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <PenTool className="h-5 w-5" />
-            Minhas Anotações
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {/* Área para anotações existentes */}
-            <div className="space-y-3">
-              <div className="p-4 border rounded-lg bg-muted/50">
-                <p className="text-sm text-muted-foreground">Suas anotações aparecerão aqui...</p>
-              </div>
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="relative px-6 py-16 text-center">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <FileText className="mr-2 h-4 w-4" />
+              Suas Anotações
             </div>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+              Anotações da <span className="text-primary">Imersão</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              Faça aqui suas anotações da imersão
+            </p>
+          </div>
+        </div>
+      </div>
 
-            {/* Textarea com botões */}
-            <div className="relative">
-              <textarea 
-                id="note-textarea" 
-                className="max-h-36 p-3 pe-32 block w-full bg-white border-gray-200 md:text-sm leading-4 rounded-lg resize-none focus:outline-hidden focus:border-blue-600 focus:ring-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:text-neutral-400 dark:border-neutral-700 dark:focus:ring-neutral-600 dark:placeholder-neutral-500 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" 
-                placeholder="Digite sua anotação..." 
-                rows={1}
-                value={newNote}
-                onChange={(e) => setNewNote(e.target.value)}
-              />
+      {/* Editor Section */}
+      <div className="px-6 pb-16">
+        <div className="mx-auto max-w-4xl">
+          <Card className="overflow-hidden border-0 bg-card/70 backdrop-blur-sm">
+            <CardContent className="p-8">
+              {/* Rich Text Editor */}
+              <div className="bg-background border border-border rounded-xl overflow-hidden">
+                <div id="hs-editor-tiptap">
+                  <div data-hs-editor-field className="min-h-[400px] p-6 text-foreground">
+                    <p className="text-muted-foreground">Comece a escrever suas anotações aqui...</p>
+                  </div>
 
-              {/* Button Group */}
-              <div className="absolute top-1/2 end-3 z-10 -translate-y-1/2">
-                <div className="flex items-center gap-x-1">
-                  {/* Attach Button */}
-                  <Button 
-                    type="button" 
-                    size="sm"
-                    variant="ghost"
-                    className="flex justify-center items-center size-6 text-sm text-gray-600 hover:bg-gray-100 rounded-full dark:text-neutral-400 dark:hover:bg-neutral-800"
-                  >
-                    <Paperclip className="shrink-0 size-3.5" />
-                    <span className="sr-only">Anexar arquivo</span>
-                  </Button>
+                  {/* Toolbar */}
+                  <div className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-t border-border">
+                    <div className="flex flex-wrap align-middle gap-1">
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-bold
+                      >
+                        <Bold className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-italic
+                      >
+                        <Italic className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-underline
+                      >
+                        <Underline className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-strike
+                      >
+                        <Strikethrough className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-link
+                      >
+                        <Link className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-ol
+                      >
+                        <ListOrdered className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-ul
+                      >
+                        <List className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-blockquote
+                      >
+                        <Quote className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="size-8 hover:bg-muted" 
+                        type="button" 
+                        data-hs-editor-code
+                      >
+                        <Code className="h-4 w-4" />
+                      </Button>
+                    </div>
 
-                  {/* Emoji Button */}
-                  <Button 
-                    type="button" 
-                    size="sm"
-                    variant="ghost"
-                    className="flex justify-center items-center size-6 text-sm text-gray-600 hover:bg-gray-100 rounded-full dark:text-neutral-400 dark:hover:bg-neutral-800"
-                  >
-                    <Smile className="shrink-0 size-3.5" />
-                    <span className="sr-only">Adicionar emoji</span>
-                  </Button>
-
-                  {/* Voice Button */}
-                  <Button 
-                    type="button" 
-                    size="sm"
-                    variant="ghost"
-                    className="flex justify-center items-center size-6 text-sm text-gray-600 hover:bg-gray-100 rounded-full dark:text-neutral-400 dark:hover:bg-neutral-800"
-                  >
-                    <Mic className="shrink-0 size-3.5" />
-                    <span className="sr-only">Enviar mensagem de voz</span>
-                  </Button>
-
-                  {/* Send Button */}
-                  <Button 
-                    type="button" 
-                    size="sm"
-                    onClick={handleSendNote}
-                    className="inline-flex shrink-0 justify-center items-center size-6 text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-500"
-                  >
-                    <span className="sr-only">Enviar</span>
-                    <Send className="shrink-0 size-3.5" />
-                  </Button>
+                    <div className="flex justify-end">
+                      <Button className="py-2 px-6 bg-primary text-primary-foreground hover:bg-primary/90">
+                        Salvar
+                      </Button>
+                    </div>
+                  </div>
+                  {/* End Toolbar */}
                 </div>
               </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
+              <div className="mt-3 flex justify-end">
+                <p className="inline-flex gap-x-2 text-xs text-muted-foreground">
+                  <Info className="h-3 w-3 mt-0.5" />
+                  Suas anotações são salvas automaticamente
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };
