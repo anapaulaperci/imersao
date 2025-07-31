@@ -68,7 +68,7 @@ const Home = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-16 font-medium">
+            <p className="text-xl md:text-2xl text-gray-600 mb-16 font-medium mt-8">
               Por: Ana Paula Perci e Convidados.
             </p>
 
