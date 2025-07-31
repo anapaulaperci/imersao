@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 const Layout = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-16">
+      <Sidebar />
+      
+      {/* Main Content */}
+      <main className="lg:pl-16 pt-16 lg:pt-0">
         <div className="animate-fade-in">
           <Outlet />
         </div>
