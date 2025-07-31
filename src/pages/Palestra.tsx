@@ -235,14 +235,14 @@ const Palestra = () => {
               Mais para ler
             </h3>
             
-            <div className="space-y-8">
+            <div className="divide-y divide-border/30 space-y-0">
               {otherResumes.map((lecture) => (
                 <Link
                   key={lecture.id}
                   to={`/palestra/${lecture.id}`}
                   className="block group"
                 >
-                  <article className="group-hover:opacity-75 transition-opacity duration-200">
+                  <article className="group-hover:opacity-75 transition-opacity duration-200 py-8 first:pt-0">
                     <div className="space-y-2">
                       <div className="flex items-center gap-3 mb-3">
                         <Badge variant="secondary" className={`${getCategoryColor(lecture.category)} text-xs border-none`}>
@@ -268,6 +268,13 @@ const Palestra = () => {
                   </article>
                 </Link>
               ))}
+            </div>
+            
+            {/* Footer */}
+            <div className="mt-12 pt-8 border-t border-border/30 text-center">
+              <p className="text-xs text-muted-foreground">
+                © 2025 Ana Paula Perci
+              </p>
             </div>
           </div>
         </div>
