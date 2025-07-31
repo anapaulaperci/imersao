@@ -144,85 +144,116 @@ const Resumos = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="w-full space-y-5">
             {resumos.map((resumo) => (
-              <Card key={resumo.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-card/50 backdrop-blur-sm">
-                {/* Image Section */}
-                <div className="relative overflow-hidden">
-                  <div 
-                    className="h-48 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${resumo.image})` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex gap-2">
-                      <Badge variant="secondary" className={`${getCategoryColor(resumo.category)} border`}>
-                        {resumo.category}
-                      </Badge>
-                      {resumo.isNew && (
-                        <Badge className="bg-success text-success-foreground">
-                          Novo
-                        </Badge>
-                      )}
-                    </div>
+              <div key={resumo.id} className="group flex justify-start gap-x-3">
+                {/* Avatar */}
+                <div className="shrink-0 mt-auto">
+                  <div className="size-10 bg-primary/10 rounded-full flex items-center justify-center">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                  </div>
+                </div>
 
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full">
-                        <Play className="h-6 w-6 text-white fill-current" />
-                      </div>
-                    </div>
+                {/* Chat Bubble */}
+                <div className="max-w-2xl">
+                  <p className="mb-1.5 ps-2.5 text-xs text-muted-foreground">{resumo.author}</p>
 
-                    {/* Bottom Info */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-sm">
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {resumo.duration}
+                  <div className="space-y-1">
+                    {/* Message */}
+                    <div className="group/bubble flex justify-start gap-x-2">
+                      <div className="text-start bg-primary/5 dark:bg-primary/10 inline-block rounded-xl pt-3 pb-2 px-4 border border-primary/10">
+                        <div className="text-sm text-foreground">
+                          
+                          {/* Image Preview */}
+                          <div className="mb-3 py-2 px-1 relative cursor-default bg-muted/50 before:bg-primary before:absolute before:inset-y-0 before:start-0 before:w-[3px] before:h-full rounded-lg overflow-hidden">
+                            <div 
+                              className="h-32 bg-cover bg-center rounded-md"
+                              style={{ backgroundImage: `url(${resumo.image})` }}
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-md" />
+                              
+                              {/* Badges on image */}
+                              <div className="absolute top-2 left-2 flex gap-1">
+                                <Badge variant="secondary" className={`${getCategoryColor(resumo.category)} border text-xs`}>
+                                  {resumo.category}
+                                </Badge>
+                                {resumo.isNew && (
+                                  <Badge className="bg-success text-success-foreground text-xs">
+                                    Novo
+                                  </Badge>
+                                )}
+                              </div>
+
+                              {/* Play overlay */}
+                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="p-2 bg-white/20 backdrop-blur-sm rounded-full">
+                                  <Play className="h-4 w-4 text-white fill-current" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
+                            {resumo.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                            {resumo.description}
+                          </p>
+
+                          {/* Meta info */}
+                          <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                            <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {resumo.duration}
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <FileText className="h-3 w-3" />
+                                {resumo.lessons} lições
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Star className="h-3 w-3 fill-current text-yellow-500" />
+                                {resumo.rating}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Action buttons */}
+                          <div className="flex gap-2">
+                            <Button size="sm" className="flex-1 group/btn">
+                              <Play className="h-3 w-3 mr-1.5 transition-transform group-hover/btn:scale-110" />
+                              Iniciar
+                            </Button>
+                            <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
+                              <Download className="h-3 w-3 mr-1.5" />
+                              Baixar
+                            </Button>
+                          </div>
+
+                          <span className="block mt-2">
+                            <span className="text-[11px] text-muted-foreground italic">Material exclusivo</span>
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 fill-current" />
-                        {resumo.rating}
+
+                      {/* More Dropdown */}
+                      <div className="lg:opacity-0 lg:group-hover/bubble:opacity-100 transition-opacity">
+                        <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:bg-muted">
+                          <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                          </svg>
+                        </Button>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Content Section */}
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-                    {resumo.title}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                    {resumo.description}
-                  </p>
-
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <User className="h-4 w-4" />
-                      {resumo.author}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FileText className="h-4 w-4" />
-                      {resumo.lessons} lições
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2 pt-2">
-                    <Button className="flex-1 group/btn">
-                      <Play className="h-4 w-4 mr-2 transition-transform group-hover/btn:scale-110" />
-                      Iniciar
-                    </Button>
-                    <Button variant="outline" size="icon" className="hover:bg-primary hover:text-primary-foreground">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              </div>
             ))}
 
             {/* Coming Soon Card */}
