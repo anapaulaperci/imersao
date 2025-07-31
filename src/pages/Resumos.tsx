@@ -41,6 +41,171 @@ const Resumos = () => {
     );
   };
 
+  const openPalestraContent = (resumo: typeof resumos[0]) => {
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>${resumo.title} - Material de Estudos</title>
+          <style>
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              line-height: 1.6;
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 40px 20px;
+              background: #fafafa;
+              color: #333;
+            }
+            .header {
+              border-bottom: 1px solid #e0e0e0;
+              padding-bottom: 30px;
+              margin-bottom: 30px;
+            }
+            .category {
+              background: #f0f0f0;
+              color: #666;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              display: inline-block;
+              margin-bottom: 20px;
+            }
+            .title {
+              font-size: 42px;
+              font-weight: 700;
+              margin: 0 0 20px 0;
+              line-height: 1.2;
+            }
+            .meta {
+              color: #666;
+              font-size: 14px;
+              margin-bottom: 30px;
+            }
+            .author {
+              font-weight: 500;
+            }
+            .content {
+              font-size: 18px;
+              line-height: 1.8;
+            }
+            .section {
+              margin: 40px 0;
+            }
+            .section h2 {
+              font-size: 24px;
+              font-weight: 600;
+              margin: 30px 0 15px 0;
+            }
+            .section h3 {
+              font-size: 20px;
+              font-weight: 600;
+              margin: 25px 0 10px 0;
+            }
+            .highlights {
+              background: #f8f9fa;
+              border-left: 4px solid #0066cc;
+              padding: 20px;
+              margin: 30px 0;
+              border-radius: 4px;
+            }
+            .image-container {
+              text-align: center;
+              margin: 40px 0;
+            }
+            .image-container img {
+              max-width: 100%;
+              border-radius: 8px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="category">${resumo.category}</div>
+            <h1 class="title">${resumo.title}</h1>
+            <div class="meta">
+              <span class="author">${resumo.author}</span> • 
+              ${resumo.duration} de leitura • 
+              ${resumo.lessons} lições
+            </div>
+          </div>
+
+          <div class="image-container">
+            <img src="${resumo.image}" alt="${resumo.title}" />
+          </div>
+
+          <div class="content">
+            <div class="highlights">
+              <strong>Resumo:</strong> ${resumo.description}
+            </div>
+
+            <div class="section">
+              <h2>Introdução</h2>
+              <p>Este material foi cuidadosamente desenvolvido para profissionais que desejam aprofundar seus conhecimentos em posicionamento de marca e aplicar estratégias práticas em seus projetos. Ao longo desta palestra, você descobrirá insights valiosos e metodologias comprovadas que podem transformar a forma como você aborda o posicionamento digital.</p>
+            </div>
+
+            <div class="section">
+              <h2>Principais Tópicos Abordados</h2>
+              <h3>1. Fundamentos do Posicionamento</h3>
+              <p>Compreenda os pilares fundamentais que sustentam uma estratégia de posicionamento eficaz. Desde a análise do mercado até a identificação de oportunidades únicas, este módulo estabelece as bases para todo o processo estratégico.</p>
+
+              <h3>2. Análise Competitiva</h3>
+              <p>Aprenda a mapear o cenário competitivo de forma sistemática, identificando gaps de mercado e oportunidades de diferenciação. Utilize ferramentas práticas para posicionar sua marca de forma única e memorável.</p>
+
+              <h3>3. Definição de Proposta de Valor</h3>
+              <p>Desenvolva uma proposta de valor clara e convincente que ressoe com seu público-alvo. Descubra como articular os benefícios únicos que sua marca oferece de maneira que gere conexão emocional e racional.</p>
+
+              <h3>4. Implementação Prática</h3>
+              <p>Transforme conceitos em ações concretas através de frameworks testados e metodologias práticas. Aprenda a criar um plano de implementação que garanta resultados mensuráveis e sustentáveis.</p>
+            </div>
+
+            <div class="section">
+              <h2>Metodologia</h2>
+              <p>Nossa abordagem combina teoria fundamentada com aplicação prática imediata. Cada conceito apresentado vem acompanhado de exemplos reais, casos de estudo e exercícios que permitem a aplicação imediata do conhecimento adquirido.</p>
+              
+              <p>Os participantes têm acesso a templates, checklists e ferramentas que facilitam a implementação das estratégias em seus próprios contextos profissionais, garantindo que o aprendizado se traduza em resultados tangíveis.</p>
+            </div>
+
+            <div class="section">
+              <h2>Resultados Esperados</h2>
+              <p>Ao final desta palestra, você estará equipado com:</p>
+              <ul>
+                <li>Uma compreensão profunda dos fundamentos do posicionamento estratégico</li>
+                <li>Ferramentas práticas para análise competitiva e identificação de oportunidades</li>
+                <li>Metodologias comprovadas para desenvolvimento de propostas de valor únicas</li>
+                <li>Um plano de ação personalizado para implementação em seus projetos</li>
+                <li>Acesso a recursos exclusivos e materiais complementares</li>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h2>Para Quem é Este Conteúdo</h2>
+              <p>Este material é ideal para empreendedores, gestores de marketing, consultores, freelancers e qualquer profissional que deseje:</p>
+              <ul>
+                <li>Fortalecer o posicionamento de sua marca ou negócio</li>
+                <li>Desenvolver estratégias de diferenciação competitiva</li>
+                <li>Criar propostas de valor mais atrativas e eficazes</li>
+                <li>Implementar processos estruturados de posicionamento</li>
+                <li>Acelerar o crescimento através de posicionamento estratégico</li>
+              </ul>
+            </div>
+
+            <div class="highlights">
+              <strong>Nota importante:</strong> Este conteúdo faz parte da Imersão Posicionamento 2024 e representa anos de experiência prática condensados em um formato acessível e acionável. Aproveite cada insight e aplique os conhecimentos em seus projetos para maximizar os resultados.
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
+  };
+
   const resumos = [
     {
       id: 1,
@@ -210,9 +375,12 @@ const Resumos = () => {
                         <Download className="h-4 w-4 mr-2" />
                         Baixar
                       </Button>
-                      <Button className="group/btn">
-                        <Play className="h-4 w-4 mr-2 transition-transform group-hover/btn:scale-110" />
-                        Assistir
+                      <Button 
+                        className="group/btn"
+                        onClick={() => openPalestraContent(resumo)}
+                      >
+                        <BookOpen className="h-4 w-4 mr-2 transition-transform group-hover/btn:scale-110" />
+                        Abrir
                       </Button>
                     </div>
                   </div>
