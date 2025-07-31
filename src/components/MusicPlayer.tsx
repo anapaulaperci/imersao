@@ -99,24 +99,24 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed right-6 top-20 w-64 z-50">
-      <Card className="border-purple-700/50 text-white shadow-2xl backdrop-blur-sm" style={{ backgroundColor: '#110A1D' }}>
+    <div className="fixed right-4 top-24 w-72 z-50">
+      <Card className="border-purple-700/50 text-white shadow-2xl backdrop-blur-sm overflow-hidden" style={{ backgroundColor: '#110A1D' }}>
         {/* Header */}
-        <div className="p-3 border-b border-purple-700/30">
+        <div className="px-4 py-3 border-b border-purple-700/30">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Music className="h-4 w-4 text-purple-300" />
-              <span className="font-medium text-xs">Study Playlist</span>
+              <span className="font-medium text-sm">Study Playlist</span>
             </div>
-            <Button variant="ghost" size="sm" className="text-purple-300 hover:text-white hover:bg-purple-700/50">
+            <Button variant="ghost" size="sm" className="text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0">
               <MoreVertical className="h-4 w-4" />
             </Button>
           </div>
         </div>
 
         {/* Album Art */}
-        <div className="p-4">
-          <div className="relative aspect-square rounded-xl overflow-hidden mb-4 group">
+        <div className="p-5">
+          <div className="relative aspect-square rounded-2xl overflow-hidden mb-5 group">
             <img 
               src={currentSong.cover} 
               alt={currentSong.album}
@@ -128,26 +128,26 @@ const MusicPlayer = () => {
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Button
                 onClick={togglePlay}
-                className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30"
+                className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30"
               >
                 {isPlaying ? (
-                  <Pause className="h-4 w-4 text-white" />
+                  <Pause className="h-5 w-5 text-white" />
                 ) : (
-                  <Play className="h-4 w-4 text-white ml-0.5" />
+                  <Play className="h-5 w-5 text-white ml-0.5" />
                 )}
               </Button>
             </div>
           </div>
 
           {/* Track Info */}
-          <div className="text-center mb-4">
-            <h3 className="font-bold text-base text-white mb-1">{currentSong.title}</h3>
-            <p className="text-purple-300 text-xs mb-1">{currentSong.artist}</p>
-            <p className="text-purple-400 text-xs">{currentSong.album}</p>
+          <div className="text-center mb-5">
+            <h3 className="font-bold text-lg text-white mb-1 truncate">{currentSong.title}</h3>
+            <p className="text-purple-300 text-sm mb-1 truncate">{currentSong.artist}</p>
+            <p className="text-purple-400 text-xs truncate">{currentSong.album}</p>
           </div>
 
           {/* Progress Bar */}
-          <div className="mb-4">
+          <div className="mb-5">
             <Slider
               value={[progress]}
               onValueChange={(value) => setProgress(value[0])}
@@ -162,12 +162,12 @@ const MusicPlayer = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="flex items-center justify-center gap-4 mb-5">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleShuffle}
-              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 ${
+              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0 ${
                 isShuffle ? "text-purple-200" : ""
               }`}
             >
@@ -178,19 +178,19 @@ const MusicPlayer = () => {
               variant="ghost"
               size="sm"
               onClick={prevTrack}
-              className="text-purple-300 hover:text-white hover:bg-purple-700/50"
+              className="text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0"
             >
-              <SkipBack className="h-4 w-4" />
+              <SkipBack className="h-5 w-5" />
             </Button>
             
             <Button
               onClick={togglePlay}
-              className="w-10 h-10 rounded-full bg-white text-purple-900 hover:bg-purple-100"
+              className="w-12 h-12 rounded-full bg-white text-purple-900 hover:bg-purple-100 flex items-center justify-center"
             >
               {isPlaying ? (
-                <Pause className="h-4 w-4" />
+                <Pause className="h-5 w-5" />
               ) : (
-                <Play className="h-4 w-4 ml-0.5" />
+                <Play className="h-5 w-5 ml-0.5" />
               )}
             </Button>
             
@@ -198,16 +198,16 @@ const MusicPlayer = () => {
               variant="ghost"
               size="sm"
               onClick={nextTrack}
-              className="text-purple-300 hover:text-white hover:bg-purple-700/50"
+              className="text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0"
             >
-              <SkipForward className="h-4 w-4" />
+              <SkipForward className="h-5 w-5" />
             </Button>
             
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleRepeat}
-              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 ${
+              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0 ${
                 isRepeat ? "text-purple-200" : ""
               }`}
             >
@@ -216,24 +216,24 @@ const MusicPlayer = () => {
           </div>
 
           {/* Secondary Controls */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleLike}
-              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 ${
+              className={`text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0 ${
                 isLiked ? "text-red-400" : ""
               }`}
             >
               <Heart className={`h-4 w-4 ${isLiked ? "fill-current" : ""}`} />
             </Button>
             
-            <div className="flex items-center gap-2 flex-1 mx-4">
+            <div className="flex items-center gap-2 flex-1">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleMute}
-                className="text-purple-300 hover:text-white hover:bg-purple-700/50"
+                className="text-purple-300 hover:text-white hover:bg-purple-700/50 h-8 w-8 p-0"
               >
                 {isMuted ? (
                   <VolumeX className="h-4 w-4" />
@@ -254,25 +254,25 @@ const MusicPlayer = () => {
         </div>
 
         {/* Mini Playlist */}
-        <div className="border-t border-purple-700/30 max-h-32 overflow-y-auto">
+        <div className="border-t border-purple-700/30 max-h-36 overflow-y-auto">
           {playlist.map((track, index) => (
             <div
               key={track.id}
               onClick={() => setCurrentTrack(index)}
-              className={`flex items-center gap-2 p-2 cursor-pointer hover:bg-purple-700/30 transition-colors ${
+              className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-purple-700/30 transition-colors ${
                 currentTrack === index ? "bg-purple-700/40" : ""
               }`}
             >
               <img 
                 src={track.cover} 
                 alt={track.album}
-                className="w-8 h-8 rounded-lg object-cover"
+                className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-white truncate">{track.title}</p>
+                <p className="text-sm font-medium text-white truncate">{track.title}</p>
                 <p className="text-xs text-purple-300 truncate">{track.artist}</p>
               </div>
-              <span className="text-xs text-purple-400">{track.duration}</span>
+              <span className="text-xs text-purple-400 flex-shrink-0">{track.duration}</span>
             </div>
           ))}
         </div>
