@@ -120,10 +120,10 @@ const Home = () => {
       </section>
 
       {/* Speakers Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-800 via-purple-900 to-purple-950">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
               Speakers
             </h2>
             <Button 
@@ -155,14 +155,14 @@ const Home = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <h3 className="font-bold text-2xl text-white">
+                    <h3 className="font-bold text-2xl text-gray-900">
                       {speaker.name}
                     </h3>
-                    <p className="text-purple-200 text-lg">
+                    <p className="text-gray-600 text-lg">
                       {speaker.description}
                     </p>
                     {speaker.bio && (
-                      <p className="text-xs text-purple-300 line-clamp-3 max-w-xs mx-auto leading-relaxed mt-2">
+                      <p className="text-xs text-gray-500 line-clamp-3 max-w-xs mx-auto leading-relaxed mt-2">
                         {speaker.bio}
                       </p>
                     )}
