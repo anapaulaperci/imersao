@@ -138,22 +138,14 @@ const Resumos = () => {
       {/* Content List */}
       <div className="px-6 pb-16">
         <div className="mx-auto max-w-4xl">
-          <div className="space-y-6">
+          <div className="space-y-8">
             {resumos.map((resumo, index) => (
               <div key={resumo.id} className="group relative overflow-hidden rounded-3xl bg-card/70 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:bg-card/90 hover:shadow-xl">
-                <div className="flex flex-col lg:flex-row">
-                  {/* Image Section */}
-                  <div className="relative lg:w-80">
-                    <div className="aspect-video lg:aspect-square overflow-hidden lg:rounded-l-3xl">
-                      <img 
-                        src={resumo.image} 
-                        alt={resumo.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                      
-                      {/* Badges */}
-                      <div className="absolute left-4 top-4 flex gap-2">
+                <div className="flex flex-col">
+                  {/* Hero Section */}
+                  <div className="px-8 pt-8 pb-6">
+                    <div className="mb-6 max-w-3xl">
+                      <div className="mb-4 flex items-center gap-3">
                         <Badge className={`${getCategoryColor(resumo.category)} backdrop-blur-sm`}>
                           {resumo.category}
                         </Badge>
@@ -162,36 +154,62 @@ const Resumos = () => {
                             Novo
                           </Badge>
                         )}
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <User className="h-4 w-4" />
+                          <span>{resumo.author}</span>
+                        </div>
                       </div>
 
-                      {/* Play Button */}
+                      <h1 className="font-bold text-foreground text-3xl md:text-4xl mb-4 group-hover:text-primary transition-colors">
+                        {resumo.title}
+                      </h1>
+
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                        {resumo.description}. Este material foi desenvolvido especificamente para profissionais que desejam aprofundar seus conhecimentos e aplicar estratégias práticas em seus projetos.
+                      </p>
+                    </div>
+
+                    {/* Hero Image */}
+                    <div className="relative w-full h-64 md:h-80 bg-muted rounded-2xl overflow-hidden">
+                      <img 
+                        className="size-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" 
+                        src={resumo.image} 
+                        alt={resumo.title}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                      
+                      {/* Play Button Overlay */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                          <Play className="h-8 w-8 text-white fill-current" />
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+                          <Play className="h-10 w-10 text-white fill-current" />
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="flex-1 p-8">
-                    <div className="flex flex-col justify-between h-full">
-                      <div>
-                        <h3 className="mb-3 text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                          {resumo.title}
-                        </h3>
-                        <p className="mb-6 text-muted-foreground leading-relaxed">
-                          {resumo.description}
-                        </p>
+                  <div className="px-8 pb-8">
+                    {/* Grid Layout */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                      <div className="lg:pr-8">
+                        <h2 className="font-semibold text-xl md:text-2xl text-foreground mb-4">
+                          Transforme seu conhecimento em resultados práticos
+                        </h2>
                       </div>
 
-                      {/* Meta Information */}
                       <div className="space-y-4">
-                        <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <User className="h-4 w-4" />
-                            <span>{resumo.author}</span>
-                          </div>
+                        <p className="text-muted-foreground">
+                          Este módulo oferece uma abordagem estruturada e prática, baseada em métodos comprovados e casos reais de sucesso. Você aprenderá não apenas a teoria, mas como aplicar cada conceito no seu dia a dia profissional.
+                        </p>
+                        <p className="text-muted-foreground">
+                          Com exemplos práticos, templates prontos e exercícios interativos, este conteúdo foi pensado para acelerar sua curva de aprendizado e gerar resultados imediatos em seus projetos.
+                        </p>
+                        <p className="text-muted-foreground">
+                          Ideal para profissionais que buscam se destacar no mercado digital e construir uma base sólida para o crescimento sustentável de seus negócios ou carreiras.
+                        </p>
+
+                        {/* Meta Information */}
+                        <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border/50">
                           <div className="flex items-center gap-2">
                             <Clock className="h-4 w-4" />
                             <span>{resumo.duration}</span>
@@ -202,12 +220,12 @@ const Resumos = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                            <span>{resumo.rating}</span>
+                            <span>{resumo.rating}/5.0</span>
                           </div>
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 pt-4">
                           <Button className="flex-1 h-12 rounded-xl font-medium group/btn">
                             <Play className="mr-2 h-4 w-4 transition-transform group-hover/btn:scale-110" />
                             Começar Agora
