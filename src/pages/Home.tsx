@@ -96,42 +96,45 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {speakers.map((speaker, index) => (
               <a 
                 key={index}
                 href={speaker.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group cursor-pointer"
+                className="group cursor-pointer text-center"
               >
-                <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-2 border-border hover:border-primary/20 overflow-hidden">
-                  <div className="relative">
-                    <img 
-                      src={speaker.image}
-                      alt={speaker.name}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="p-2 bg-white/90 rounded-full">
+                <div className="transition-all duration-300 hover:-translate-y-2">
+                  <div className="relative mb-4">
+                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-border group-hover:border-primary/50 transition-colors duration-300">
+                      <img 
+                        src={speaker.image}
+                        alt={speaker.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="p-2 bg-white/90 rounded-full shadow-lg">
                         <Instagram className="h-4 w-4 text-pink-600" />
                       </div>
                     </div>
                   </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                  
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">
                       {speaker.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-3">
+                    <p className="text-sm text-muted-foreground">
                       {speaker.description}
                     </p>
                     {speaker.bio && (
-                      <p className="text-xs text-muted-foreground line-clamp-3">
+                      <p className="text-xs text-muted-foreground line-clamp-3 max-w-xs mx-auto">
                         {speaker.bio}
                       </p>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </a>
             ))}
           </div>
