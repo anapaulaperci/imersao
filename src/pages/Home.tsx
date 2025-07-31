@@ -203,11 +203,22 @@ const Home = () => {
 
               {/* Schedule Rows */}
               <div className="divide-y divide-purple-500/30">
+                {/* Registros no Sistema */}
+                <div className="grid grid-cols-3">
+                  <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
+                    <div className="text-white font-bold">09:00 - 10:00</div>
+                    <div className="text-white/70 text-sm">Registros</div>
+                  </div>
+                  <div className="col-span-2 p-6 text-center">
+                    <div className="text-white font-bold text-lg">Registros no Sistema & Credenciamento</div>
+                  </div>
+                </div>
+
                 {/* Início */}
                 <div className="grid grid-cols-3">
                   <div className="p-4 bg-purple-400/20 border-r border-purple-500/30">
                     <div className="text-white font-bold">10:00</div>
-                    <div className="text-white/70 text-sm">Início</div>
+                    <div className="text-white/70 text-sm">Abertura</div>
                   </div>
                   <div className="col-span-2 p-6 text-center">
                     <div className="flex items-center justify-center gap-3">
@@ -239,7 +250,7 @@ const Home = () => {
                       />
                       <div>
                         <div className="text-white font-bold text-lg">Palestra: Camilo Coutinho</div>
-                        <div className="text-white/70 text-sm">Vídeo Marketing e Produção de Conteúdo</div>
+                        <div className="text-white/70 text-sm">Marketing de Vídeo e Produção de Conteúdo</div>
                       </div>
                     </div>
                   </div>
@@ -252,7 +263,7 @@ const Home = () => {
                     <div className="text-white/70 text-sm">Intervalo</div>
                   </div>
                   <div className="col-span-2 p-6 text-center">
-                    <div className="text-white font-bold text-lg">Almoço & Networking</div>
+                    <div className="text-white font-bold text-lg">Almoço & Relacionamento</div>
                   </div>
                 </div>
 
