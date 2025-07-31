@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
 const Layout = () => {
+  console.log("Layout component rendering...");
+  
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
