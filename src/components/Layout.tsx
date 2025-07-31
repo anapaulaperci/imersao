@@ -9,7 +9,7 @@ const Layout = () => {
       <Sidebar />
       
       {/* Main Content */}
-      <main className="lg:ps-65 pt-15 lg:pt-0">
+      <main className="lg:pl-65 pt-15 lg:pt-0">
         <div className="animate-fade-in">
           <Outlet />
         </div>

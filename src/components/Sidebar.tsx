@@ -64,7 +64,7 @@ const Sidebar = () => {
   return (
     <>
       {/* ========== HEADER ========== */}
-      <header className="lg:hidden lg:ms-65 fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
+      <header className="lg:hidden lg:ms-65 fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[60] bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
         <div className="flex justify-between basis-full items-center w-full py-2.5 px-2 sm:px-5">
           {/* Sidebar Toggle */}
           <button 
@@ -85,7 +85,7 @@ const Sidebar = () => {
       {/* ========== MAIN SIDEBAR ========== */}
       <aside 
         className={`
-          fixed inset-y-0 start-0 z-60
+          fixed inset-y-0 start-0 z-[60]
           w-65 h-full
           bg-purple-950
           lg:block lg:translate-x-0 lg:end-auto lg:bottom-0

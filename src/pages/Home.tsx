@@ -42,7 +42,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary-glow to-accent py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 opacity-20"></div>

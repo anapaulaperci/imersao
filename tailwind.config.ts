@@ -124,7 +124,11 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.4s ease-out',
 				'slide-in': 'slide-in 0.3s ease-out'
-			}
+			},
+			spacing: {
+				'15': '3.75rem', // 60px for header mobile
+				'65': '16.25rem', // 260px for sidebar width
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
