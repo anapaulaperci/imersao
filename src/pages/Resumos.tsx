@@ -93,162 +93,129 @@ const Resumos = () => {
   const averageRating = (resumos.reduce((acc, resumo) => acc + resumo.rating, 0) / resumos.length).toFixed(1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-muted/20">
-      <div className="p-6 lg:p-8 space-y-8">
-        {/* Header Section */}
-        <div className="text-center space-y-6">
-          <div className="flex justify-center">
-            <div className="p-4 bg-primary/10 rounded-2xl">
-              <BookOpen className="h-12 w-12 text-primary" />
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="relative px-6 py-16 text-center">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <BookOpen className="mr-2 h-4 w-4" />
+              Material Exclusivo
             </div>
-          </div>
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Material de Estudo
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+              Biblioteca de <span className="text-primary">Estudos</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Conteúdos exclusivos e materiais de apoio para sua jornada de posicionamento
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              Acesse conteúdos curados e materiais premium para acelerar sua jornada de posicionamento digital
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          <Card className="text-center">
-            <CardContent className="p-4">
-              <div className="text-2xl font-bold text-primary">{resumos.length}</div>
-              <div className="text-sm text-muted-foreground">Módulos</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="p-4">
-              <div className="text-2xl font-bold text-primary">{totalLessons}</div>
-              <div className="text-sm text-muted-foreground">Lições</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="p-4">
-              <div className="text-2xl font-bold text-primary">{totalDuration}h</div>
-              <div className="text-sm text-muted-foreground">Conteúdo</div>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="p-4">
-              <div className="text-2xl font-bold text-primary flex items-center justify-center gap-1">
-                <Star className="h-4 w-4 fill-current" />
-                {averageRating}
-              </div>
-              <div className="text-sm text-muted-foreground">Avaliação</div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Content Grid */}
-        <div className="max-w-4xl mx-auto">
-          <div className="w-full space-y-5">
-            {resumos.map((resumo) => (
-              <div key={resumo.id} className="group flex justify-start gap-x-3">
-                {/* Avatar */}
-                <div className="shrink-0 mt-auto">
-                  <div className="size-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <BookOpen className="h-5 w-5 text-primary" />
-                  </div>
+      {/* Quick Stats */}
+      <div className="px-6 pb-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { label: 'Módulos', value: resumos.length, icon: FileText },
+              { label: 'Lições', value: totalLessons, icon: BookOpen },
+              { label: 'Horas', value: `${totalDuration}h`, icon: Clock },
+              { label: 'Avaliação', value: averageRating, icon: Star }
+            ].map((stat, index) => (
+              <div key={index} className="rounded-2xl bg-card/50 p-6 text-center backdrop-blur-sm border border-border/50">
+                <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <stat.icon className="h-6 w-6 text-primary" />
                 </div>
+                <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                {/* Chat Bubble */}
-                <div className="max-w-2xl">
-                  <p className="mb-1.5 ps-2.5 text-xs text-muted-foreground">{resumo.author}</p>
-
-                  <div className="space-y-1">
-                    {/* Message */}
-                    <div className="group/bubble flex justify-start gap-x-2">
-                      <div className="text-start bg-primary/5 dark:bg-primary/10 inline-block rounded-xl pt-3 pb-2 px-4 border border-primary/10">
-                        <div className="text-sm text-foreground">
-                          
-                          {/* Image Preview */}
-                          <div className="mb-3 py-2 px-1 relative cursor-default bg-muted/50 before:bg-primary before:absolute before:inset-y-0 before:start-0 before:w-[3px] before:h-full rounded-lg overflow-hidden">
-                            <div 
-                              className="h-32 bg-cover bg-center rounded-md"
-                              style={{ backgroundImage: `url(${resumo.image})` }}
-                            >
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-md" />
-                              
-                              {/* Badges on image */}
-                              <div className="absolute top-2 left-2 flex gap-1">
-                                <Badge variant="secondary" className={`${getCategoryColor(resumo.category)} border text-xs`}>
-                                  {resumo.category}
-                                </Badge>
-                                {resumo.isNew && (
-                                  <Badge className="bg-success text-success-foreground text-xs">
-                                    Novo
-                                  </Badge>
-                                )}
-                              </div>
-
-                              {/* Play overlay */}
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="p-2 bg-white/20 backdrop-blur-sm rounded-full">
-                                  <Play className="h-4 w-4 text-white fill-current" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Title */}
-                          <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
-                            {resumo.title}
-                          </h3>
-
-                          {/* Description */}
-                          <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
-                            {resumo.description}
-                          </p>
-
-                          {/* Meta info */}
-                          <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
-                            <div className="flex items-center gap-3">
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {resumo.duration}
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <FileText className="h-3 w-3" />
-                                {resumo.lessons} lições
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Star className="h-3 w-3 fill-current text-yellow-500" />
-                                {resumo.rating}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Action buttons */}
-                          <div className="flex gap-2">
-                            <Button size="sm" className="flex-1 group/btn">
-                              <Play className="h-3 w-3 mr-1.5 transition-transform group-hover/btn:scale-110" />
-                              Iniciar
-                            </Button>
-                            <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
-                              <Download className="h-3 w-3 mr-1.5" />
-                              Baixar
-                            </Button>
-                          </div>
-
-                          <span className="block mt-2">
-                            <span className="text-[11px] text-muted-foreground italic">Material exclusivo</span>
-                          </span>
-                        </div>
+      {/* Content List */}
+      <div className="px-6 pb-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="space-y-6">
+            {resumos.map((resumo, index) => (
+              <div key={resumo.id} className="group relative overflow-hidden rounded-3xl bg-card/70 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:bg-card/90 hover:shadow-xl">
+                <div className="flex flex-col lg:flex-row">
+                  {/* Image Section */}
+                  <div className="relative lg:w-80">
+                    <div className="aspect-video lg:aspect-square overflow-hidden lg:rounded-l-3xl">
+                      <img 
+                        src={resumo.image} 
+                        alt={resumo.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      
+                      {/* Badges */}
+                      <div className="absolute left-4 top-4 flex gap-2">
+                        <Badge className={`${getCategoryColor(resumo.category)} backdrop-blur-sm`}>
+                          {resumo.category}
+                        </Badge>
+                        {resumo.isNew && (
+                          <Badge className="bg-emerald-500/90 text-white backdrop-blur-sm">
+                            Novo
+                          </Badge>
+                        )}
                       </div>
 
-                      {/* More Dropdown */}
-                      <div className="lg:opacity-0 lg:group-hover/bubble:opacity-100 transition-opacity">
-                        <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:bg-muted">
-                          <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="12" cy="12" r="1"/>
-                            <circle cx="12" cy="5" r="1"/>
-                            <circle cx="12" cy="19" r="1"/>
-                          </svg>
-                        </Button>
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+                          <Play className="h-8 w-8 text-white fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="flex-1 p-8">
+                    <div className="flex flex-col justify-between h-full">
+                      <div>
+                        <h3 className="mb-3 text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                          {resumo.title}
+                        </h3>
+                        <p className="mb-6 text-muted-foreground leading-relaxed">
+                          {resumo.description}
+                        </p>
+                      </div>
+
+                      {/* Meta Information */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <User className="h-4 w-4" />
+                            <span>{resumo.author}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Clock className="h-4 w-4" />
+                            <span>{resumo.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <FileText className="h-4 w-4" />
+                            <span>{resumo.lessons} lições</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            <span>{resumo.rating}</span>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-3">
+                          <Button className="flex-1 h-12 rounded-xl font-medium group/btn">
+                            <Play className="mr-2 h-4 w-4 transition-transform group-hover/btn:scale-110" />
+                            Começar Agora
+                          </Button>
+                          <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl hover:bg-primary hover:text-primary-foreground">
+                            <Download className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -256,42 +223,24 @@ const Resumos = () => {
               </div>
             ))}
 
-            {/* Coming Soon Card */}
-            <Card className="group border-dashed border-2 border-muted-foreground/20 hover:border-primary/40 transition-all duration-300 bg-gradient-to-br from-muted/20 to-muted/10">
-              <CardContent className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-                <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
-                  <BookOpen className="h-12 w-12 text-primary" />
+            {/* Coming Soon Section */}
+            <div className="mt-12 rounded-3xl border-2 border-dashed border-muted-foreground/20 bg-gradient-to-br from-muted/20 to-transparent p-12 text-center transition-all duration-300 hover:border-primary/40">
+              <div className="mx-auto max-w-md space-y-4">
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+                  <BookOpen className="h-8 w-8 text-primary" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    Novos Conteúdos em Breve
-                  </h3>
-                  <p className="text-muted-foreground text-sm max-w-xs">
-                    Estamos sempre criando novos materiais para enriquecer sua jornada de aprendizado
-                  </p>
-                </div>
-                <Button variant="outline" className="group/btn">
-                  Saiba mais
-                  <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                <h3 className="text-xl font-semibold text-foreground">
+                  Mais Conteúdo em Breve
+                </h3>
+                <p className="text-muted-foreground">
+                  Novos materiais e recursos estão sendo desenvolvidos para enriquecer ainda mais sua experiência de aprendizado.
+                </p>
+                <Button variant="outline" className="group">
+                  Me Notificar
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center space-y-4 pt-8">
-          <div className="p-6 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl max-w-2xl mx-auto">
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Pronto para acelerar seu aprendizado?
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              Acesse todos os materiais e transforme seu posicionamento de marca
-            </p>
-            <Button size="lg" className="group">
-              Explorar Tudo
-              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
