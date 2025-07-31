@@ -3,7 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { CheckSquare, Circle, Trophy, Target, Clock, TrendingUp, Plus } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CheckSquare, Circle, Trophy, Target, Clock, TrendingUp, Plus, Calendar } from "lucide-react";
 import { useState } from "react";
 
 const Checklist = () => {
@@ -63,7 +65,7 @@ const Checklist = () => {
     },
     {
       id: "4",
-      title: "Implementação",
+      title: "Plano de Implementação",
       description: "Execução e acompanhamento",
       icon: Trophy,
       color: "text-destructive",
@@ -117,22 +119,49 @@ const Checklist = () => {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-3xl font-bold text-foreground mb-2">
-                Product Design Checklist
+                Checklist de Posicionamento
               </h1>
               <p className="text-muted-foreground">
-                Track your progress through design milestones
+                Acompanhe seu progresso através dos marcos do projeto
               </p>
             </div>
             <Button variant="outline" size="sm">
               <Plus className="h-4 w-4 mr-2" />
-              Add Item
+              Adicionar Item
             </Button>
+          </div>
+          
+          {/* Theme and Date Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="space-y-2">
+              <Label htmlFor="task-theme" className="text-sm font-medium">
+                Tema da Tarefa
+              </Label>
+              <Input 
+                id="task-theme"
+                placeholder="Digite o tema principal da tarefa..."
+                className="w-full"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="completion-date" className="text-sm font-medium">
+                Data de Conclusão
+              </Label>
+              <div className="relative">
+                <Input 
+                  id="completion-date"
+                  type="date"
+                  className="w-full"
+                />
+                <Calendar className="absolute right-3 top-3 h-4 w-4 text-muted-foreground pointer-events-none" />
+              </div>
+            </div>
           </div>
           
           {/* Progress Bar */}
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Overall Progress</span>
+              <span className="text-muted-foreground">Progresso Geral</span>
               <span className="font-medium text-foreground">{totalProgress}%</span>
             </div>
             <Progress value={totalProgress} className="h-2" />
@@ -219,7 +248,7 @@ const Checklist = () => {
         {/* Footer Actions */}
         <div className="mt-8 flex justify-center">
           <Button variant="outline" size="sm">
-            Export Progress
+            Exportar Progresso
           </Button>
         </div>
 
@@ -228,8 +257,8 @@ const Checklist = () => {
           <Card className="mt-6 border-green-200 bg-green-50">
             <CardContent className="p-6 text-center">
               <Trophy className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-green-800 mb-2">Congratulations!</h3>
-              <p className="text-green-700">You've completed all checklist items!</p>
+              <h3 className="text-lg font-bold text-green-800 mb-2">Parabéns!</h3>
+              <p className="text-green-700">Você completou todos os itens do checklist!</p>
             </CardContent>
           </Card>
         )}
