@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Search, FileText, Bold, Italic, Link, List, AlignLeft, File } from "lucide-react";
+import { Plus, Search, FileText, Bold, Italic, Link, List, AlignLeft, File, Heading1, Heading2, Heading3, Quote, Code, Highlighter, Minus, Undo, Redo, Table, Image, ListOrdered } from "lucide-react";
 
 const Anotacoes = () => {
   const [selectedNote, setSelectedNote] = useState<number | null>(1);
@@ -115,20 +115,80 @@ const Anotacoes = () => {
           <>
             {/* Toolbar */}
             <div className="border-b border-border p-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 flex-wrap">
+                {/* Undo/Redo */}
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Undo className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Redo className="h-4 w-4" />
+                </Button>
+                
+                <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Headings */}
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Heading1 className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Heading2 className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Heading3 className="h-4 w-4" />
+                </Button>
+                
+                <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Text Formatting */}
                 <Button variant="ghost" size="sm" className="h-8 px-2">
                   <Bold className="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" size="sm" className="h-8 px-2">
                   <Italic className="h-4 w-4" />
                 </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Highlighter className="h-4 w-4" />
+                </Button>
+                
                 <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Lists */}
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <List className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <ListOrdered className="h-4 w-4" />
+                </Button>
+                
+                <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Links & Media */}
                 <Button variant="ghost" size="sm" className="h-8 px-2">
                   <Link className="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" size="sm" className="h-8 px-2">
-                  <List className="h-4 w-4" />
+                  <Image className="h-4 w-4" />
                 </Button>
+                
+                <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Special */}
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Quote className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Code className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Table className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="h-8 px-2">
+                  <Minus className="h-4 w-4" />
+                </Button>
+                
+                <div className="w-px h-6 bg-border mx-2" />
+                
+                {/* Alignment */}
                 <Button variant="ghost" size="sm" className="h-8 px-2">
                   <AlignLeft className="h-4 w-4" />
                 </Button>
